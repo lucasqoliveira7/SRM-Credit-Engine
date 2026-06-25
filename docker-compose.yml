@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: srm-credit-engine-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: srm_credit_engine
+      POSTGRES_USER: srm_user
+      POSTGRES_PASSWORD: srm_password
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
