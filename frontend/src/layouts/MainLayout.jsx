@@ -19,7 +19,6 @@ const navItems = [
     { label: "Dashboard", to: "/", icon: <DashboardIcon fontSize="small" /> },
     { label: "Simulação", to: "/pricing", icon: <CalculateIcon fontSize="small" /> },
     { label: "Liquidação", to: "/liquidation", icon: <DescriptionIcon fontSize="small" /> },
-    { label: "Extrato", to: "/statement", icon: <ListAltIcon fontSize="small" /> },
 ];
 
 function MainLayout({ children }) {
