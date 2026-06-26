@@ -1,4 +1,4 @@
-# DER - SRM Credit Engine
+# DIAGRAMA ER - SRM Credit Engine
 
 ## Entidades
 

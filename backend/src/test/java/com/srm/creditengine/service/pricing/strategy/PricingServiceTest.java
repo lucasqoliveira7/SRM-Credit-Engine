@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -27,11 +28,12 @@ class PricingServiceTest {
                 .type(ReceivableType.DUPLICATA)
                 .faceValue(new BigDecimal("10000.00"))
                 .dueDate(LocalDate.now().plusDays(30))
+                .createdAt(LocalDateTime.now())
                 .build();
 
         BigDecimal result = pricingService.calculatePresentValue(receivable);
 
-        assertThat(result).isEqualByComparingTo(new BigDecimal("9800.00"));
+        assertThat(result).isEqualByComparingTo(new BigDecimal("9756.10"));
     }
 
     @Test
@@ -40,11 +42,12 @@ class PricingServiceTest {
                 .type(ReceivableType.CHEQUE)
                 .faceValue(new BigDecimal("10000.00"))
                 .dueDate(LocalDate.now().plusDays(30))
+                .createdAt(LocalDateTime.now())
                 .build();
 
         BigDecimal result = pricingService.calculatePresentValue(receivable);
 
-        assertThat(result).isEqualByComparingTo(new BigDecimal("9700.00"));
+        assertThat(result).isEqualByComparingTo(new BigDecimal("9661.84"));
     }
 
     @Test

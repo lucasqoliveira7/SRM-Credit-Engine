@@ -13,61 +13,32 @@ import java.time.LocalDate;
 
 public record LiquidationRequest(
 
-        @Schema(
-                example = "Empresa ABC LTDA",
-                description = "Nome da empresa cedente"
-        )
+        @Schema(example = "Empresa ABC LTDA")
         @NotBlank
         String cedentName,
 
-        @Schema(
-                example = "12345678000190",
-                description = "CNPJ da empresa cedente"
-        )
+        @Schema(example = "12345678000190")
         @NotBlank
         String cedentDocument,
 
-        @Schema(
-                example = "DUPLICATA",
-                description = "Tipo do recebível"
-        )
+        @Schema(example = "DUPLICATA")
         @NotNull
         ReceivableType type,
 
-        @Schema(
-                example = "BRL",
-                description = "Moeda original do recebível"
-        )
+        @Schema(example = "BRL")
         @NotNull
         CurrencyCode receivableCurrency,
 
-        @Schema(
-                example = "USD",
-                description = "Moeda utilizada na liquidação"
-        )
+        @Schema(example = "USD")
         @NotNull
         CurrencyCode paymentCurrency,
 
-        @Schema(
-                example = "10000.00",
-                description = "Valor de face do recebível"
-        )
+        @Schema(example = "10000.00")
         @NotNull
         @DecimalMin("0.01")
         BigDecimal faceValue,
 
-        @Schema(
-                example = "5.42",
-                description = "Cotação utilizada para conversão"
-        )
-        @NotNull
-        @DecimalMin("0.00000001")
-        BigDecimal exchangeRate,
-
-        @Schema(
-                example = "2026-08-30",
-                description = "Data de vencimento"
-        )
+        @Schema(example = "2026-08-30")
         @NotNull
         @Future
         LocalDate dueDate

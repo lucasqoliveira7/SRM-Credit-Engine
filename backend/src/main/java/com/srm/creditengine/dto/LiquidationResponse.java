@@ -16,6 +16,9 @@ public record LiquidationResponse(
         @Schema(example = "Empresa ABC LTDA", description = "Nome da empresa cedente")
         String cedentName,
 
+        @Schema(example = "12345678000190", description = "Documento da empresa cedente")
+        String cedentDocument,
+
         @Schema(example = "DUPLICATA", description = "Tipo do recebível")
         ReceivableType type,
 

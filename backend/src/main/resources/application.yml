@@ -3,9 +3,9 @@ spring:
     name: credit-engine
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/srm_credit_engine
-    username: srm_user
-    password: srm_password
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/srm_credit_engine}
+    username: ${SPRING_DATASOURCE_USERNAME:srm_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:srm_password}
     driver-class-name: org.postgresql.Driver
 
   jackson:
