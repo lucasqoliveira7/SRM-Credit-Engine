@@ -42,7 +42,7 @@ function MainLayout({ children }) {
                         minHeight: 72,
                         gap: 1,
                         px: 0,
-                        alignItems: "stretch",
+                        alignItems: "center",
                     }}
                 >
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexGrow: 1, px: 2 }}>
@@ -76,9 +76,6 @@ function MainLayout({ children }) {
                                 borderRadius: 0,
                                 px: 2.5,
                                 minWidth: 130,
-                                height: "100%",
-                                display: "flex",
-                                alignItems: "center",
                             }}
                         >
                             {label}
