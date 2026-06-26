@@ -40,7 +40,7 @@ function MainLayout({ children }) {
                     disableGutters
                     sx={{
                         minHeight: 72,
-                        gap: 0,
+                        gap: 1,
                         px: 0,
                         alignItems: "stretch",
                     }}
