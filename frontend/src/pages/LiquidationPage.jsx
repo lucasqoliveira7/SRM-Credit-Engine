@@ -222,7 +222,6 @@ function LiquidationPage() {
                                 variant="contained"
                                 color="secondary"
                                 size="large"
-                                sx={{ borderRadius: 0 }}
                             >
                                 Liquidar
                             </Button>
@@ -273,10 +272,10 @@ function LiquidationPage() {
 
             <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
                 <Grid container spacing={2} alignItems="center">
-                    <Grid item xs={12} sm={6} md={2}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <TextField
                             fullWidth type="date"
-                            label="Início"
+                            label="Data Início"
                             name="startDate"
                             value={filters.startDate}
                             onChange={handleFilterChange}
@@ -284,10 +283,10 @@ function LiquidationPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={2}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <TextField
                             fullWidth type="date"
-                            label="Fim"
+                            label="Data Fim"
                             name="endDate"
                             value={filters.endDate}
                             onChange={handleFilterChange}
@@ -319,15 +318,15 @@ function LiquidationPage() {
                         </TextField>
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={2}>
+                    <Grid item xs={12} sm={6} md={1}>
                         <Button
                             fullWidth
                             variant="contained"
                             color="secondary"
                             onClick={handleSearch}
-                            sx={{ height: 56, borderRadius: 0 }}
+                            sx={{ height: 56 }}
                         >
-                            Pesquisar
+                            Buscar
                         </Button>
                     </Grid>
                 </Grid>

@@ -39,14 +39,13 @@ function Dashboard() {
                     {[
                         { label: "Nova Simulação", path: "/pricing" },
                         { label: "Liquidação", path: "/liquidation" },
-                        { label: "Extrato", path: "/statement" },
                     ].map(({ label, path }) => (
                         <Button
                             key={label}
                             variant="contained"
                             color="secondary"
                             onClick={() => navigate(path)}
-                            sx={{ borderRadius: 0, minWidth: 140, px: 3 }}
+                            sx={{ minWidth: 140, px: 3 }}
                         >
                             {label}
                         </Button>

@@ -72,7 +72,7 @@ function MainLayout({ children }) {
                             to={to}
                             startIcon={icon}
                             sx={{
-                                borderRadius: 0,
+                                borderRadius: 2,
                                 px: 2.5,
                                 minWidth: 130,
                             }}
