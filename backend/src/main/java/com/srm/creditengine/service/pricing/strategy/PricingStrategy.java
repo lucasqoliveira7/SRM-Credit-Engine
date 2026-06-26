@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 
 public interface PricingStrategy {
 
+    BigDecimal getSpread();
+
     BigDecimal calculatePresentValue(Receivable receivable);
 
 }
