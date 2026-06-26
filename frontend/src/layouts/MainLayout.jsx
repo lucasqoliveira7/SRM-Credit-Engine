@@ -34,9 +34,9 @@ function MainLayout({ children }) {
                     borderColor: "secondary.main",
                 }}
             >
-                <Toolbar sx={{ minHeight: 72, gap: 1 }}>
+                <Toolbar sx={{ minHeight: 72, gap: 1, px: "0 !important" }}>
 
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexGrow: 1 }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexGrow: 1, pl: 2 }}>
                         <Box
                             sx={{
                                 width: 40,

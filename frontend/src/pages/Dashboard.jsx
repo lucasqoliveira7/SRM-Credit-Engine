@@ -36,15 +36,15 @@ function Dashboard() {
                 </Typography>
 
                 <Box sx={{ display: "flex", gap: 2, mt: 4, flexWrap: "wrap" }}>
-                    <Button variant="contained" color="secondary" onClick={() => navigate("/pricing")}>
+                    <Button variant="contained" color="secondary" sx={{ borderRadius: 0 }} onClick={() => navigate("/pricing")}>
                         Nova Simulação
                     </Button>
 
-                    <Button variant="contained" color="secondary" onClick={() => navigate("/liquidation")}>
+                    <Button variant="contained" color="secondary" sx={{ borderRadius: 0 }} onClick={() => navigate("/liquidation")}>
                         Liquidação
                     </Button>
 
-                    <Button variant="contained" color="secondary" onClick={() => navigate("/statement")}>
+                    <Button variant="contained" color="secondary" sx={{ borderRadius: 0 }} onClick={() => navigate("/statement")}>
                         Extrato
                     </Button>
                 </Box>
