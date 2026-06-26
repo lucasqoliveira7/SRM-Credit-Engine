@@ -11,7 +11,6 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import CalculateIcon from "@mui/icons-material/Calculate";
 import DescriptionIcon from "@mui/icons-material/Description";
 import ListAltIcon from "@mui/icons-material/ListAlt";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import BoltIcon from "@mui/icons-material/Bolt";
 
 import { Link } from "react-router-dom";
@@ -21,7 +20,6 @@ const navItems = [
     { label: "Simulação", to: "/pricing", icon: <CalculateIcon fontSize="small" /> },
     { label: "Liquidação", to: "/liquidation", icon: <DescriptionIcon fontSize="small" /> },
     { label: "Extrato", to: "/statement", icon: <ListAltIcon fontSize="small" /> },
-    { label: "Câmbio", to: "/currency-rates", icon: <CurrencyExchangeIcon fontSize="small" /> },
 ];
 
 function MainLayout({ children }) {

@@ -5,7 +5,6 @@ import Dashboard from "./pages/Dashboard";
 import PricingPage from "./pages/PricingPage";
 import LiquidationPage from "./pages/LiquidationPage";
 import StatementPage from "./pages/StatementPage";
-import CurrencyRatePage from "./pages/CurrencyRatePage";
 
 function App() {
     return (
@@ -16,7 +15,6 @@ function App() {
                     <Route path="/pricing" element={<PricingPage />} />
                     <Route path="/liquidation" element={<LiquidationPage />} />
                     <Route path="/statement" element={<StatementPage />} />
-                    <Route path="/currency-rates" element={<CurrencyRatePage />} />
                 </Routes>
             </MainLayout>
         </BrowserRouter>
