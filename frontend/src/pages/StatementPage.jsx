@@ -105,25 +105,15 @@ function StatementPage() {
     }
 
     function DateField({ label, name, value }) {
-        const [focused, setFocused] = useState(false);
-
         return (
             <TextField
                 fullWidth
-                type={focused || value ? "date" : "text"}
+                type="date"
                 label={label}
                 name={name}
                 value={value}
-                onFocus={() => setFocused(true)}
-                onBlur={() => {
-                    if (!value) {
-                        setFocused(false);
-                    }
-                }}
                 onChange={handleChange}
-                InputLabelProps={{
-                    shrink: focused || Boolean(value),
-                }}
+                InputLabelProps={{ shrink: true }}
             />
         );
     }
