@@ -7,7 +7,20 @@ import {
     Typography
 } from "@mui/material";
 
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import CalculateIcon from "@mui/icons-material/Calculate";
+import DescriptionIcon from "@mui/icons-material/Description";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import BoltIcon from "@mui/icons-material/Bolt";
+
 import { Link } from "react-router-dom";
+
+const navItems = [
+    { label: "Dashboard", to: "/", icon: <DashboardIcon fontSize="small" /> },
+    { label: "Simulação", to: "/pricing", icon: <CalculateIcon fontSize="small" /> },
+    { label: "Liquidação", to: "/liquidation", icon: <DescriptionIcon fontSize="small" /> },
+    { label: "Extrato", to: "/statement", icon: <ListAltIcon fontSize="small" /> },
+];
 
 function MainLayout({ children }) {
     return (
@@ -21,53 +34,43 @@ function MainLayout({ children }) {
                     borderColor: "secondary.main",
                 }}
             >
-                <Toolbar sx={{ minHeight: 72 }}>
+                <Toolbar sx={{ minHeight: 72, gap: 1 }}>
 
-                    <Typography
-                        variant="h5"
-                        sx={{
-                            fontWeight: 700,
-                            flexGrow: 1
-                        }}
-                    >
-                        SRM Credit Engine
-                    </Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexGrow: 1 }}>
+                        <Box
+                            sx={{
+                                width: 40,
+                                height: 40,
+                                bgcolor: "secondary.main",
+                                borderRadius: 1,
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <BoltIcon sx={{ color: "primary.main", fontSize: 26 }} />
+                        </Box>
+                        <Typography
+                            variant="h5"
+                            sx={{ fontWeight: 700 }}
+                        >
+                            SRM Credit Engine
+                        </Typography>
+                    </Box>
 
-                    <Button
-                        color="inherit"
-                        component={Link}
-                        to="/"
-                    >
-                        Dashboard
-                    </Button>
-
-                    <Button
-                        color="inherit"
-                        component={Link}
-                        to="/pricing"
-                    >
-                        Simulação
-                    </Button>
-
-                    <Button
-                        color="inherit"
-                        component={Link}
-                        to="/liquidation"
-                    >
-                        Liquidação
-                    </Button>
-
-                    <Button color="inherit" component={Link} to="/statement">
-                          Extrato
-                    </Button>
-
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        sx={{ ml: 3 }}
-                    >
-                        API Online
-                    </Button>
+                    {navItems.map(({ label, to, icon }) => (
+                        <Button
+                            key={label}
+                            variant="contained"
+                            color="secondary"
+                            component={Link}
+                            to={to}
+                            startIcon={icon}
+                            sx={{ borderRadius: 0, px: 2 }}
+                        >
+                            {label}
+                        </Button>
+                    ))}
 
                 </Toolbar>
             </AppBar>

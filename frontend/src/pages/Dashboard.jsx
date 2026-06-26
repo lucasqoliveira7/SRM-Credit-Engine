@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import {
     Box,
     Button,
-    Grid,
     Paper,
     Typography
 } from "@mui/material";
+
+import ArticleIcon from "@mui/icons-material/Article";
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -49,40 +50,26 @@ function Dashboard() {
                 </Box>
             </Paper>
 
-            <Grid container spacing={3}>
-                <Grid size={{ xs: 12, md: 4 }}>
-                    <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-                        <Typography color="text.secondary">
-                            Valor Operado
-                        </Typography>
-                        <Typography variant="h5" fontWeight="bold">
-                            R$ 7.000.000,00
-                        </Typography>
-                    </Paper>
-                </Grid>
-
-                <Grid size={{ xs: 12, md: 4 }}>
-                    <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-                        <Typography color="text.secondary">
-                            Liquidações Realizadas
-                        </Typography>
-                        <Typography variant="h5" fontWeight="bold">
-                            67
-                        </Typography>
-                    </Paper>
-                </Grid>
-
-                <Grid size={{ xs: 12, md: 4 }}>
-                    <Paper elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-                        <Typography color="text.secondary">
-                            Moedas Suportadas
-                        </Typography>
-                        <Typography variant="h5" fontWeight="bold">
-                            BRL / USD
-                        </Typography>
-                    </Paper>
-                </Grid>
-            </Grid>
+            <Paper elevation={2} sx={{ p: 4, borderRadius: 3, display: "flex", alignItems: "center", gap: 3 }}>
+                <Box
+                    sx={{
+                        minWidth: 72,
+                        height: 72,
+                        bgcolor: "grey.100",
+                        borderRadius: 2,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                    }}
+                >
+                    <ArticleIcon sx={{ fontSize: 40, color: "primary.main" }} />
+                </Box>
+                <Typography variant="body1" color="text.secondary" lineHeight={1.8}>
+                    Sistema desenvolvido para simular uma plataforma de cessão de crédito multimoedas capaz de
+                    precificar recebíveis, realizar liquidações financeiras e consultar históricos de operações de forma
+                    segura, auditável e escalável.
+                </Typography>
+            </Paper>
         </Box>
     );
 }
