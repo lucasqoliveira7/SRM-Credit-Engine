@@ -32,11 +32,20 @@ function MainLayout({ children }) {
                     bgcolor: "primary.main",
                     borderBottom: "4px solid",
                     borderColor: "secondary.main",
+                    borderRadius: 0,
+                    width: "100%",
                 }}
             >
-                <Toolbar sx={{ minHeight: 72, gap: 1, px: "0 !important" }}>
-
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexGrow: 1, pl: 2 }}>
+                <Toolbar
+                    disableGutters
+                    sx={{
+                        minHeight: 72,
+                        gap: 0,
+                        px: 0,
+                        alignItems: "stretch",
+                    }}
+                >
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexGrow: 1, px: 2 }}>
                         <Box
                             sx={{
                                 width: 40,
@@ -50,10 +59,7 @@ function MainLayout({ children }) {
                         >
                             <BoltIcon sx={{ color: "primary.main", fontSize: 26 }} />
                         </Box>
-                        <Typography
-                            variant="h5"
-                            sx={{ fontWeight: 700 }}
-                        >
+                        <Typography variant="h5" sx={{ fontWeight: 700 }}>
                             SRM Credit Engine
                         </Typography>
                     </Box>
@@ -66,12 +72,18 @@ function MainLayout({ children }) {
                             component={Link}
                             to={to}
                             startIcon={icon}
-                            sx={{ borderRadius: 0, px: 2 }}
+                            sx={{
+                                borderRadius: 0,
+                                px: 2.5,
+                                minWidth: 130,
+                                height: "100%",
+                                display: "flex",
+                                alignItems: "center",
+                            }}
                         >
                             {label}
                         </Button>
                     ))}
-
                 </Toolbar>
             </AppBar>
 

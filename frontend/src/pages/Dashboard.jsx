@@ -36,17 +36,21 @@ function Dashboard() {
                 </Typography>
 
                 <Box sx={{ display: "flex", gap: 2, mt: 4, flexWrap: "wrap" }}>
-                    <Button variant="contained" color="secondary" sx={{ borderRadius: 0 }} onClick={() => navigate("/pricing")}>
-                        Nova Simulação
-                    </Button>
-
-                    <Button variant="contained" color="secondary" sx={{ borderRadius: 0 }} onClick={() => navigate("/liquidation")}>
-                        Liquidação
-                    </Button>
-
-                    <Button variant="contained" color="secondary" sx={{ borderRadius: 0 }} onClick={() => navigate("/statement")}>
-                        Extrato
-                    </Button>
+                    {[
+                        { label: "Nova Simulação", path: "/pricing" },
+                        { label: "Liquidação", path: "/liquidation" },
+                        { label: "Extrato", path: "/statement" },
+                    ].map(({ label, path }) => (
+                        <Button
+                            key={label}
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => navigate(path)}
+                            sx={{ borderRadius: 0, minWidth: 140, px: 3 }}
+                        >
+                            {label}
+                        </Button>
+                    ))}
                 </Box>
             </Paper>
 
