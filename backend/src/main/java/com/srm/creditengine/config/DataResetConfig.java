@@ -5,7 +5,8 @@ import jakarta.persistence.PersistenceContext;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 
 @Configuration
 public class DataResetConfig {
@@ -14,12 +15,15 @@ public class DataResetConfig {
     private EntityManager entityManager;
 
     @Bean
-    @Transactional
-    public ApplicationRunner resetDataOnStartup() {
+    public ApplicationRunner resetDataOnStartup(PlatformTransactionManager transactionManager) {
         return args -> {
-            entityManager.createNativeQuery("TRUNCATE TABLE settlements RESTART IDENTITY CASCADE").executeUpdate();
-            entityManager.createNativeQuery("TRUNCATE TABLE receivables RESTART IDENTITY CASCADE").executeUpdate();
-            entityManager.createNativeQuery("TRUNCATE TABLE cedents RESTART IDENTITY CASCADE").executeUpdate();
+            TransactionTemplate tx = new TransactionTemplate(transactionManager);
+            tx.execute(status -> {
+                entityManager.createNativeQuery("TRUNCATE TABLE settlements RESTART IDENTITY CASCADE").executeUpdate();
+                entityManager.createNativeQuery("TRUNCATE TABLE receivables RESTART IDENTITY CASCADE").executeUpdate();
+                entityManager.createNativeQuery("TRUNCATE TABLE cedents RESTART IDENTITY CASCADE").executeUpdate();
+                return null;
+            });
         };
     }
 }
