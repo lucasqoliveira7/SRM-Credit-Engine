@@ -9,6 +9,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
+import { simulatePricing } from "../services/pricingService";
 
 function formatNumber(value) {
     if (value === null || value === undefined) return "-";
@@ -20,7 +21,6 @@ function formatDate(value) {
     const [year, month, day] = value.split("-");
     return `${day}/${month}/${year}`;
 }
-import { simulatePricing } from "../services/pricingService";
 
 function PricingPage() {
     const [form, setForm] = useState({
@@ -30,37 +30,29 @@ function PricingPage() {
         dueDate: "2026-08-30",
     });
 
-    const [result, setResult] = useState(null);
+    const [results, setResults] = useState([]);
     const [error, setError] = useState("");
 
     function handleChange(event) {
-        setForm({
-            ...form,
-            [event.target.name]: event.target.value,
-        });
+        setForm({ ...form, [event.target.name]: event.target.value });
     }
 
     async function handleSubmit(event) {
         event.preventDefault();
         setError("");
-        setResult(null);
 
         try {
             const data = await simulatePricing({
                 ...form,
                 faceValue: Number(form.faceValue),
             });
-
-            setResult(data);
+            setResults(prev => [data, ...prev]);
         } catch (err) {
-                      console.error("Erro completo:", err);
-                      console.error("Resposta da API:", err.response?.data);
-
-                      setError(
-                          err.response?.data?.error ||
-                          err.response?.data?.message ||
-                          "Erro ao simular precificação. Verifique se o backend está rodando."
-                      );
+            setError(
+                err.response?.data?.error ||
+                err.response?.data?.message ||
+                "Erro ao simular precificação. Verifique se o backend está rodando."
+            );
         }
     }
 
@@ -75,8 +67,7 @@ function PricingPage() {
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <TextField
-                                select
-                                fullWidth
+                                select fullWidth
                                 label="Tipo do Recebível"
                                 name="type"
                                 value={form.type}
@@ -89,8 +80,7 @@ function PricingPage() {
 
                         <Grid item xs={12} md={6}>
                             <TextField
-                                select
-                                fullWidth
+                                select fullWidth
                                 label="Moeda"
                                 name="currency"
                                 value={form.currency}
@@ -125,12 +115,7 @@ function PricingPage() {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                color="secondary"
-                                size="large"
-                            >
+                            <Button type="submit" variant="contained" color="secondary" size="large">
                                 Simular
                             </Button>
                         </Grid>
@@ -144,26 +129,47 @@ function PricingPage() {
                 </Alert>
             )}
 
-            {result && (
-                <Paper elevation={4} sx={{ p: 4, borderRadius: 3, borderLeft: "4px solid", borderColor: "secondary.main" }}>
-                    <Typography variant="h6" fontWeight={700} color="secondary.main" gutterBottom>
-                        Resultado da Simulação
-                    </Typography>
-                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, mt: 1 }}>
-                        {[
-                            ["Tipo", result.type],
-                            ["Moeda", result.currency],
-                            ["Vencimento", formatDate(result.dueDate)],
-                            ["Valor de Face", formatNumber(result.faceValue)],
-                            ["Valor Presente", formatNumber(result.presentValue)],
-                        ].map(([label, value]) => (
-                            <Box key={label} sx={{ minWidth: 160 }}>
-                                <Typography variant="caption" color="text.secondary" display="block">{label}</Typography>
-                                <Typography variant="body1" fontWeight={600}>{value}</Typography>
-                            </Box>
+            {results.length > 0 && (
+                <Box>
+                    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2 }}>
+                        <Typography variant="h6" fontWeight={700}>
+                            Resultados ({results.length})
+                        </Typography>
+                        <Button
+                            variant="outlined"
+                            color="error"
+                            size="small"
+                            onClick={() => setResults([])}
+                        >
+                            Limpar Lista
+                        </Button>
+                    </Box>
+
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                        {results.map((result, index) => (
+                            <Paper
+                                key={index}
+                                elevation={3}
+                                sx={{ p: 3, borderRadius: 3, borderLeft: "4px solid", borderColor: "secondary.main" }}
+                            >
+                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
+                                    {[
+                                        ["Tipo", result.type],
+                                        ["Moeda", result.currency],
+                                        ["Vencimento", formatDate(result.dueDate)],
+                                        ["Valor de Face", formatNumber(result.faceValue)],
+                                        ["Valor Presente", formatNumber(result.presentValue)],
+                                    ].map(([label, value]) => (
+                                        <Box key={label} sx={{ minWidth: 160 }}>
+                                            <Typography variant="caption" color="text.secondary" display="block">{label}</Typography>
+                                            <Typography variant="body1" fontWeight={600}>{value}</Typography>
+                                        </Box>
+                                    ))}
+                                </Box>
+                            </Paper>
                         ))}
                     </Box>
-                </Paper>
+                </Box>
             )}
         </Box>
     );
