@@ -271,7 +271,7 @@ function LiquidationPage() {
             </Typography>
 
             <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
-                <Grid container spacing={2} alignItems="center">
+                <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={3}>
                         <TextField
                             fullWidth type="date"
@@ -304,7 +304,7 @@ function LiquidationPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={2}>
+                    <Grid item xs={12} sm={6} md={3}>
                         <TextField
                             select fullWidth
                             label="Moeda"
@@ -318,15 +318,14 @@ function LiquidationPage() {
                         </TextField>
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={1}>
+                    <Grid item xs={12}>
                         <Button
-                            fullWidth
                             variant="contained"
                             color="secondary"
                             onClick={handleSearch}
-                            sx={{ height: 56 }}
+                            sx={{ minWidth: 140, px: 3 }}
                         >
-                            Buscar
+                            Pesquisar
                         </Button>
                     </Grid>
                 </Grid>
