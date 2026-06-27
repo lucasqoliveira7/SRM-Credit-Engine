@@ -23,10 +23,6 @@ import { liquidateReceivable } from "../services/liquidationService";
 import { getLiquidationStatement } from "../services/statementService";
 
 function LiquidationPage() {
-    const defaultDueDate = new Date();
-    defaultDueDate.setDate(defaultDueDate.getDate() + 30);
-    const defaultDueDateStr = defaultDueDate.toISOString().split("T")[0];
-
     const [form, setForm] = useState({
         cedentName: "",
         cedentDocument: "",
@@ -34,7 +30,7 @@ function LiquidationPage() {
         receivableCurrency: "BRL",
         paymentCurrency: "BRL",
         faceValue: "",
-        dueDate: defaultDueDateStr,
+        dueDate: "",
     });
 
     const [liquidationResult, setLiquidationResult] = useState(null);

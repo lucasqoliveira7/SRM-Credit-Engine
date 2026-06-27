@@ -23,15 +23,11 @@ function formatDate(value) {
 }
 
 function PricingPage() {
-    const defaultDueDate = new Date();
-    defaultDueDate.setDate(defaultDueDate.getDate() + 30);
-    const defaultDueDateStr = defaultDueDate.toISOString().split("T")[0];
-
     const [form, setForm] = useState({
         type: "DUPLICATA",
         currency: "BRL",
         faceValue: "",
-        dueDate: defaultDueDateStr,
+        dueDate: "",
     });
 
     const [results, setResults] = useState([]);
