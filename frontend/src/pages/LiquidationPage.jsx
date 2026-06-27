@@ -70,6 +70,22 @@ function LiquidationPage() {
         setLiquidationError("");
         setLiquidationResult(null);
 
+        if (!form.faceValue || Number(form.faceValue) <= 0) {
+            setLiquidationError("Preencha o campo Valor de Face com um valor maior que zero.");
+            return;
+        }
+        if (!form.dueDate) {
+            setLiquidationError("Preencha a Data de Vencimento.");
+            return;
+        }
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const due = new Date(form.dueDate + "T00:00:00");
+        if (isNaN(due.getTime()) || due <= today) {
+            setLiquidationError("Data de Vencimento inválida. Informe uma data futura.");
+            return;
+        }
+
         try {
             const data = await liquidateReceivable({
                 ...form,
