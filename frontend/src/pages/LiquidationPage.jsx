@@ -39,7 +39,7 @@ function LiquidationPage() {
     const [filters, setFilters] = useState({
         startDate: "",
         endDate: "",
-        cedentDocument: "",
+        cedentName: "",
         currency: "",
     });
 
@@ -225,9 +225,9 @@ function LiquidationPage() {
             <Paper elevation={3} sx={{ p: 3, mb: 3, borderRadius: 3 }}>
                 <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
                     <TextField
-                        label="Documento Cedente"
-                        name="cedentDocument"
-                        value={filters.cedentDocument}
+                        label="Nome do Cedente"
+                        name="cedentName"
+                        value={filters.cedentName}
                         onChange={handleFilterChange}
                         sx={{ minWidth: 200 }}
                     />
