@@ -260,16 +260,19 @@ function LiquidationPage() {
             </Typography>
 
             <TableContainer component={Paper} elevation={3} sx={{ borderRadius: 3, overflowX: "auto" }}>
-                <Table sx={{ minWidth: 900 }}>
+                <Table sx={{ minWidth: 1100 }}>
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
                             <TableCell>Data</TableCell>
                             <TableCell>Cedente</TableCell>
+                            <TableCell>Documento</TableCell>
                             <TableCell>Tipo</TableCell>
                             <TableCell>Valor Face</TableCell>
                             <TableCell>Valor Presente</TableCell>
-                            <TableCell>Moeda</TableCell>
+                            <TableCell>Moeda Recebível</TableCell>
+                            <TableCell>Moeda Pagamento</TableCell>
+                            <TableCell>Cotação</TableCell>
                             <TableCell>Status</TableCell>
                         </TableRow>
                     </TableHead>
@@ -281,16 +284,19 @@ function LiquidationPage() {
                                     {row.settledAt ? new Date(row.settledAt).toLocaleDateString("pt-BR") : "-"}
                                 </TableCell>
                                 <TableCell>{row.cedentName}</TableCell>
+                                <TableCell>{row.cedentDocument}</TableCell>
                                 <TableCell>{row.type}</TableCell>
                                 <TableCell>{formatNumber(row.faceValue)}</TableCell>
                                 <TableCell>{formatNumber(row.presentValue)}</TableCell>
+                                <TableCell>{row.receivableCurrency}</TableCell>
                                 <TableCell>{row.paymentCurrency}</TableCell>
+                                <TableCell>{formatNumber(row.exchangeRate)}</TableCell>
                                 <TableCell>{row.status}</TableCell>
                             </TableRow>
                         ))}
                         {rows.length === 0 && (
                             <TableRow>
-                                <TableCell align="center" colSpan={8}>
+                                <TableCell align="center" colSpan={11}>
                                     Nenhuma liquidação encontrada.
                                 </TableCell>
                             </TableRow>
