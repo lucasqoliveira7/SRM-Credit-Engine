@@ -237,28 +237,61 @@ function LiquidationPage() {
             )}
 
             {liquidationResult && (
-                <Paper elevation={4} sx={{ p: 4, mb: 4, borderRadius: 3 }}>
-                    <Typography variant="h6" gutterBottom color="success.main">
-                        Liquidação Confirmada
-                    </Typography>
-                    <Grid container spacing={1}>
-                        {[
-                            ["ID", liquidationResult.settlementId],
-                            ["Cedente", liquidationResult.cedentName],
-                            ["Tipo", liquidationResult.type],
-                            ["Valor de Face", formatNumber(liquidationResult.faceValue)],
-                            ["Valor Presente", formatNumber(liquidationResult.presentValue)],
-                            ["Moeda Recebível", liquidationResult.receivableCurrency],
-                            ["Moeda Pagamento", liquidationResult.paymentCurrency],
-                            ["Cotação Aplicada", formatNumber(liquidationResult.exchangeRate)],
-                            ["Status", liquidationResult.status],
-                            ["Liquidado em", new Date(liquidationResult.settledAt).toLocaleDateString("pt-BR")],
-                        ].map(([label, value]) => (
-                            <Grid item xs={12} sm={6} md={4} key={label}>
-                                <Typography variant="body2" color="text.secondary">{label}</Typography>
-                                <Typography variant="body1" fontWeight="bold">{value}</Typography>
-                            </Grid>
-                        ))}
+                <Paper elevation={4} sx={{ p: 4, mb: 4, borderRadius: 3, borderLeft: "4px solid", borderColor: "success.main" }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
+                        <Typography variant="h6" color="success.main" fontWeight={700}>
+                            Liquidação Confirmada
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            — ID #{liquidationResult.settlementId}
+                        </Typography>
+                    </Box>
+
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Typography variant="caption" color="text.secondary" display="block">Cedente</Typography>
+                            <Typography variant="body1" fontWeight={600}>{liquidationResult.cedentName}</Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Typography variant="caption" color="text.secondary" display="block">Tipo</Typography>
+                            <Typography variant="body1" fontWeight={600}>{liquidationResult.type}</Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Typography variant="caption" color="text.secondary" display="block">Status</Typography>
+                            <Typography variant="body1" fontWeight={600} color="success.main">{liquidationResult.status}</Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={3}>
+                            <Typography variant="caption" color="text.secondary" display="block">Valor de Face</Typography>
+                            <Typography variant="h6" fontWeight={700}>{formatNumber(liquidationResult.faceValue)}</Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={3}>
+                            <Typography variant="caption" color="text.secondary" display="block">Valor Presente</Typography>
+                            <Typography variant="h6" fontWeight={700} color="secondary.main">{formatNumber(liquidationResult.presentValue)}</Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={3}>
+                            <Typography variant="caption" color="text.secondary" display="block">Cotação Aplicada</Typography>
+                            <Typography variant="body1" fontWeight={600}>{formatNumber(liquidationResult.exchangeRate)}</Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={3}>
+                            <Typography variant="caption" color="text.secondary" display="block">Liquidado em</Typography>
+                            <Typography variant="body1" fontWeight={600}>{new Date(liquidationResult.settledAt).toLocaleDateString("pt-BR")}</Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={3}>
+                            <Typography variant="caption" color="text.secondary" display="block">Moeda Recebível</Typography>
+                            <Typography variant="body1" fontWeight={600}>{liquidationResult.receivableCurrency}</Typography>
+                        </Grid>
+
+                        <Grid item xs={12} sm={6} md={3}>
+                            <Typography variant="caption" color="text.secondary" display="block">Moeda Pagamento</Typography>
+                            <Typography variant="body1" fontWeight={600}>{liquidationResult.paymentCurrency}</Typography>
+                        </Grid>
                     </Grid>
                 </Paper>
             )}
