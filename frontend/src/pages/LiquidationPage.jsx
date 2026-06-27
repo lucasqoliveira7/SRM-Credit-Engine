@@ -29,8 +29,8 @@ function LiquidationPage() {
         type: "DUPLICATA",
         receivableCurrency: "BRL",
         paymentCurrency: "BRL",
-        faceValue: "10000",
-        dueDate: "2026-08-30",
+        faceValue: "",
+        dueDate: "",
     });
 
     const [liquidationResult, setLiquidationResult] = useState(null);

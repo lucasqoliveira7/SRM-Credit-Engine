@@ -26,8 +26,8 @@ function PricingPage() {
     const [form, setForm] = useState({
         type: "DUPLICATA",
         currency: "BRL",
-        faceValue: "10000",
-        dueDate: "2026-08-30",
+        faceValue: "",
+        dueDate: "",
     });
 
     const [results, setResults] = useState([]);
