@@ -9,6 +9,17 @@ import {
     TextField,
     Typography
 } from "@mui/material";
+
+function formatNumber(value) {
+    if (value === null || value === undefined) return "-";
+    return new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(Number(value));
+}
+
+function formatDate(value) {
+    if (!value) return "-";
+    const [year, month, day] = value.split("-");
+    return `${day}/${month}/${year}`;
+}
 import { simulatePricing } from "../services/pricingService";
 
 function PricingPage() {
@@ -134,30 +145,24 @@ function PricingPage() {
             )}
 
             {result && (
-                <Paper elevation={4} sx={{ p: 4 }}>
-                    <Typography variant="h5" gutterBottom>
+                <Paper elevation={4} sx={{ p: 4, borderRadius: 3, borderLeft: "4px solid", borderColor: "secondary.main" }}>
+                    <Typography variant="h6" fontWeight={700} color="secondary.main" gutterBottom>
                         Resultado da Simulação
                     </Typography>
-
-                    <Typography>
-                        Tipo: {result.type}
-                    </Typography>
-
-                    <Typography>
-                        Moeda: {result.currency}
-                    </Typography>
-
-                    <Typography>
-                        Valor de Face: {result.faceValue}
-                    </Typography>
-
-                    <Typography>
-                        Valor Presente: {result.presentValue}
-                    </Typography>
-
-                    <Typography>
-                        Vencimento: {result.dueDate}
-                    </Typography>
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, mt: 1 }}>
+                        {[
+                            ["Tipo", result.type],
+                            ["Moeda", result.currency],
+                            ["Vencimento", formatDate(result.dueDate)],
+                            ["Valor de Face", formatNumber(result.faceValue)],
+                            ["Valor Presente", formatNumber(result.presentValue)],
+                        ].map(([label, value]) => (
+                            <Box key={label} sx={{ minWidth: 160 }}>
+                                <Typography variant="caption" color="text.secondary" display="block">{label}</Typography>
+                                <Typography variant="body1" fontWeight={600}>{value}</Typography>
+                            </Box>
+                        ))}
+                    </Box>
                 </Paper>
             )}
         </Box>
