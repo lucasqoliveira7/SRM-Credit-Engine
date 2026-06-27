@@ -87,6 +87,11 @@ function LiquidationPage() {
             return;
         }
 
+        if (form.receivableCurrency === "BRL" && form.paymentCurrency === "USD") {
+            setLiquidationError("Conversão BRL → USD não está disponível. Utilize USD → BRL para recebíveis em dólar.");
+            return;
+        }
+
         try {
             const data = await liquidateReceivable({
                 ...form,
