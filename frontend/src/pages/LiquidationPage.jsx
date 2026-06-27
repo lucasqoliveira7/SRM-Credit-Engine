@@ -135,81 +135,43 @@ function LiquidationPage() {
 
             <Paper elevation={3} sx={{ p: 4, mb: 4, borderRadius: 3 }}>
                 <Box component="form" onSubmit={handleLiquidate}>
-                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 2 }}>
-                        <TextField
-                            label="Nome do Cedente"
-                            name="cedentName"
-                            value={form.cedentName}
-                            onChange={handleFormChange}
-                            sx={{ flex: "1 1 220px" }}
-                        />
-                        <TextField
-                            label="Documento do Cedente"
-                            name="cedentDocument"
-                            value={form.cedentDocument}
-                            onChange={handleFormChange}
-                            sx={{ flex: "1 1 220px" }}
-                        />
-                        <TextField
-                            select
-                            label="Tipo"
-                            name="type"
-                            value={form.type}
-                            onChange={handleFormChange}
-                            sx={{ flex: "1 1 150px" }}
-                        >
-                            <MenuItem value="DUPLICATA">Duplicata</MenuItem>
-                            <MenuItem value="CHEQUE">Cheque</MenuItem>
-                        </TextField>
-                        <TextField
-                            select
-                            label="Moeda Recebível"
-                            name="receivableCurrency"
-                            value={form.receivableCurrency}
-                            onChange={handleFormChange}
-                            sx={{ flex: "1 1 150px" }}
-                        >
-                            <MenuItem value="BRL">BRL</MenuItem>
-                            <MenuItem value="USD">USD</MenuItem>
-                        </TextField>
-                        <TextField
-                            select
-                            label="Moeda Pagamento"
-                            name="paymentCurrency"
-                            value={form.paymentCurrency}
-                            onChange={handleFormChange}
-                            sx={{ flex: "1 1 150px" }}
-                        >
-                            <MenuItem value="BRL">BRL</MenuItem>
-                            <MenuItem value="USD">USD</MenuItem>
-                        </TextField>
-                        <TextField
-                            type="number"
-                            label="Valor de Face"
-                            name="faceValue"
-                            value={form.faceValue}
-                            onChange={handleFormChange}
-                            sx={{ flex: "1 1 180px" }}
-                        />
-                        <TextField
-                            type="date"
-                            label="Data de Vencimento"
-                            name="dueDate"
-                            value={form.dueDate}
-                            onChange={handleFormChange}
-                            InputLabelProps={{ shrink: true }}
-                            sx={{ flex: "1 1 180px" }}
-                        />
-                    </Box>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="secondary"
-                        size="large"
-                        sx={{ minWidth: 140, px: 3 }}
-                    >
-                        Liquidar
-                    </Button>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth label="Nome do Cedente" name="cedentName" value={form.cedentName} onChange={handleFormChange} />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth label="Documento do Cedente" name="cedentDocument" value={form.cedentDocument} onChange={handleFormChange} />
+                        </Grid>
+                        <Grid item xs={12} md={4}>
+                            <TextField select fullWidth label="Tipo" name="type" value={form.type} onChange={handleFormChange}>
+                                <MenuItem value="DUPLICATA">Duplicata</MenuItem>
+                                <MenuItem value="CHEQUE">Cheque</MenuItem>
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={12} md={4}>
+                            <TextField select fullWidth label="Moeda Recebível" name="receivableCurrency" value={form.receivableCurrency} onChange={handleFormChange}>
+                                <MenuItem value="BRL">BRL</MenuItem>
+                                <MenuItem value="USD">USD</MenuItem>
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={12} md={4}>
+                            <TextField select fullWidth label="Moeda Pagamento" name="paymentCurrency" value={form.paymentCurrency} onChange={handleFormChange}>
+                                <MenuItem value="BRL">BRL</MenuItem>
+                                <MenuItem value="USD">USD</MenuItem>
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth type="number" label="Valor de Face" name="faceValue" value={form.faceValue} onChange={handleFormChange} />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth type="date" label="Data de Vencimento" name="dueDate" value={form.dueDate} onChange={handleFormChange} InputLabelProps={{ shrink: true }} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button type="submit" variant="contained" color="secondary" size="large" sx={{ minWidth: 140, px: 3 }}>
+                                Liquidar
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Paper>
 
@@ -259,53 +221,29 @@ function LiquidationPage() {
             </Typography>
 
             <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 2 }}>
-                    <TextField
-                        type="date"
-                        label="Data Início"
-                        name="startDate"
-                        value={filters.startDate}
-                        onChange={handleFilterChange}
-                        InputLabelProps={{ shrink: true }}
-                        sx={{ flex: "1 1 180px" }}
-                    />
-                    <TextField
-                        type="date"
-                        label="Data Fim"
-                        name="endDate"
-                        value={filters.endDate}
-                        onChange={handleFilterChange}
-                        InputLabelProps={{ shrink: true }}
-                        sx={{ flex: "1 1 180px" }}
-                    />
-                    <TextField
-                        label="Documento Cedente"
-                        name="cedentDocument"
-                        value={filters.cedentDocument}
-                        onChange={handleFilterChange}
-                        sx={{ flex: "1 1 200px" }}
-                    />
-                    <TextField
-                        select
-                        label="Moeda"
-                        name="currency"
-                        value={filters.currency}
-                        onChange={handleFilterChange}
-                        sx={{ flex: "1 1 150px" }}
-                    >
-                        <MenuItem value="">Todas</MenuItem>
-                        <MenuItem value="BRL">BRL</MenuItem>
-                        <MenuItem value="USD">USD</MenuItem>
-                    </TextField>
-                </Box>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={handleSearch}
-                    sx={{ minWidth: 140, px: 3 }}
-                >
-                    Pesquisar
-                </Button>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={3}>
+                        <TextField fullWidth type="date" label="Data Início" name="startDate" value={filters.startDate} onChange={handleFilterChange} InputLabelProps={{ shrink: true }} />
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <TextField fullWidth type="date" label="Data Fim" name="endDate" value={filters.endDate} onChange={handleFilterChange} InputLabelProps={{ shrink: true }} />
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <TextField fullWidth label="Documento Cedente" name="cedentDocument" value={filters.cedentDocument} onChange={handleFilterChange} />
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <TextField select fullWidth label="Moeda" name="currency" value={filters.currency} onChange={handleFilterChange}>
+                            <MenuItem value="">Todas</MenuItem>
+                            <MenuItem value="BRL">BRL</MenuItem>
+                            <MenuItem value="USD">USD</MenuItem>
+                        </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button variant="contained" color="secondary" onClick={handleSearch} sx={{ minWidth: 140, px: 3 }}>
+                            Pesquisar
+                        </Button>
+                    </Grid>
+                </Grid>
             </Paper>
 
             {statementError && (
