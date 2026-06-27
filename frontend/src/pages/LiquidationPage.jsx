@@ -40,6 +40,7 @@ function LiquidationPage() {
         startDate: "",
         endDate: "",
         cedentName: "",
+        cedentDocument: "",
         currency: "",
     });
 
@@ -246,6 +247,31 @@ function LiquidationPage() {
                         value={filters.cedentName}
                         onChange={handleFilterChange}
                         sx={{ minWidth: 200 }}
+                    />
+                    <TextField
+                        label="Documento do Cedente"
+                        name="cedentDocument"
+                        value={filters.cedentDocument}
+                        onChange={handleFilterChange}
+                        sx={{ minWidth: 200 }}
+                    />
+                    <TextField
+                        label="Data Início"
+                        name="startDate"
+                        type="date"
+                        value={filters.startDate}
+                        onChange={handleFilterChange}
+                        slotProps={{ inputLabel: { shrink: true } }}
+                        sx={{ minWidth: 170 }}
+                    />
+                    <TextField
+                        label="Data Fim"
+                        name="endDate"
+                        type="date"
+                        value={filters.endDate}
+                        onChange={handleFilterChange}
+                        slotProps={{ inputLabel: { shrink: true } }}
+                        sx={{ minWidth: 170 }}
                     />
                     <TextField
                         select

@@ -101,6 +101,7 @@ public class LiquidationService {
             LocalDate startDate,
             LocalDate endDate,
             String cedentName,
+            String cedentDocument,
             CurrencyCode currency,
             Pageable pageable
     ) {
@@ -129,6 +130,15 @@ public class LiquidationService {
                     cb.like(
                             cb.lower(root.get("receivable").get("cedent").get("name")),
                             "%" + cedentName.toLowerCase() + "%"
+                    )
+            );
+        }
+
+        if (cedentDocument != null && !cedentDocument.isBlank()) {
+            spec = spec.and((root, query, cb) ->
+                    cb.like(
+                            root.get("receivable").get("cedent").get("document"),
+                            "%" + cedentDocument + "%"
                     )
             );
         }

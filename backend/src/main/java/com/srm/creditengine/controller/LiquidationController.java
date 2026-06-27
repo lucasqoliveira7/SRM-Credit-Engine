@@ -54,6 +54,9 @@ public class LiquidationController {
             String cedentName,
 
             @RequestParam(required = false)
+            String cedentDocument,
+
+            @RequestParam(required = false)
             CurrencyCode currency,
 
             @PageableDefault(size = 10)
@@ -63,6 +66,7 @@ public class LiquidationController {
                 startDate,
                 endDate,
                 cedentName,
+                cedentDocument,
                 currency,
                 pageable
         );
