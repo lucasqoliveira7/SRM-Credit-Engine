@@ -110,7 +110,7 @@ function PricingPage() {
                                 type="date"
                                 value={form.dueDate}
                                 onChange={handleChange}
-                                InputLabelProps={{ shrink: true }}
+                                slotProps={{ inputLabel: { shrink: true } }}
                             />
                         </Grid>
 

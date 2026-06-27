@@ -166,7 +166,7 @@ function LiquidationPage() {
                             <TextField fullWidth type="number" label="Valor de Face" name="faceValue" value={form.faceValue} onChange={handleFormChange} />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <TextField fullWidth type="date" label="Data de Vencimento" name="dueDate" value={form.dueDate} onChange={handleFormChange} InputLabelProps={{ shrink: true }} />
+                            <TextField fullWidth type="date" label="Data de Vencimento" name="dueDate" value={form.dueDate} onChange={handleFormChange} slotProps={{ inputLabel: { shrink: true } }} />
                         </Grid>
                         <Grid item xs={12}>
                             <Button type="submit" variant="contained" color="secondary" size="large" sx={{ minWidth: 140, px: 3 }}>
