@@ -136,7 +136,7 @@ function LiquidationPage() {
             <Paper elevation={3} sx={{ p: 4, mb: 4, borderRadius: 3 }}>
                 <Box component="form" onSubmit={handleLiquidate}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <TextField
                                 fullWidth
                                 label="Nome do Cedente"
@@ -146,7 +146,7 @@ function LiquidationPage() {
                             />
                         </Grid>
 
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <TextField
                                 fullWidth
                                 label="Documento do Cedente"
@@ -156,7 +156,7 @@ function LiquidationPage() {
                             />
                         </Grid>
 
-                        <Grid item xs={12} md={4}>
+                        <Grid size={{ xs: 12, md: 4 }}>
                             <TextField
                                 select fullWidth
                                 label="Tipo"
@@ -169,7 +169,7 @@ function LiquidationPage() {
                             </TextField>
                         </Grid>
 
-                        <Grid item xs={12} md={4}>
+                        <Grid size={{ xs: 12, md: 4 }}>
                             <TextField
                                 select fullWidth
                                 label="Moeda Recebível"
@@ -182,7 +182,7 @@ function LiquidationPage() {
                             </TextField>
                         </Grid>
 
-                        <Grid item xs={12} md={4}>
+                        <Grid size={{ xs: 12, md: 4 }}>
                             <TextField
                                 select fullWidth
                                 label="Moeda Pagamento"
@@ -195,7 +195,7 @@ function LiquidationPage() {
                             </TextField>
                         </Grid>
 
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <TextField
                                 fullWidth type="number"
                                 label="Valor de Face"
@@ -205,7 +205,7 @@ function LiquidationPage() {
                             />
                         </Grid>
 
-                        <Grid item xs={12} md={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>
                             <TextField
                                 fullWidth type="date"
                                 label="Data de Vencimento"
@@ -216,7 +216,7 @@ function LiquidationPage() {
                             />
                         </Grid>
 
-                        <Grid item xs={12}>
+                        <Grid size={{ xs: 12 }}>
                             <Button
                                 type="submit"
                                 variant="contained"
@@ -248,47 +248,47 @@ function LiquidationPage() {
                     </Box>
 
                     <Grid container spacing={3}>
-                        <Grid item xs={12} sm={6} md={4}>
+                        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Cedente</Typography>
                             <Typography variant="body1" fontWeight={600}>{liquidationResult.cedentName}</Typography>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={4}>
+                        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Tipo</Typography>
                             <Typography variant="body1" fontWeight={600}>{liquidationResult.type}</Typography>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={4}>
+                        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Status</Typography>
                             <Typography variant="body1" fontWeight={600} color="success.main">{liquidationResult.status}</Typography>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Valor de Face</Typography>
                             <Typography variant="h6" fontWeight={700}>{formatNumber(liquidationResult.faceValue)}</Typography>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Valor Presente</Typography>
                             <Typography variant="h6" fontWeight={700} color="secondary.main">{formatNumber(liquidationResult.presentValue)}</Typography>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Cotação Aplicada</Typography>
                             <Typography variant="body1" fontWeight={600}>{formatNumber(liquidationResult.exchangeRate)}</Typography>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Liquidado em</Typography>
                             <Typography variant="body1" fontWeight={600}>{new Date(liquidationResult.settledAt).toLocaleDateString("pt-BR")}</Typography>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Moeda Recebível</Typography>
                             <Typography variant="body1" fontWeight={600}>{liquidationResult.receivableCurrency}</Typography>
                         </Grid>
 
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                             <Typography variant="caption" color="text.secondary" display="block">Moeda Pagamento</Typography>
                             <Typography variant="body1" fontWeight={600}>{liquidationResult.paymentCurrency}</Typography>
                         </Grid>
@@ -305,7 +305,7 @@ function LiquidationPage() {
 
             <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
                 <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <TextField
                             fullWidth type="date"
                             label="Data Início"
@@ -316,7 +316,7 @@ function LiquidationPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <TextField
                             fullWidth type="date"
                             label="Data Fim"
@@ -327,7 +327,7 @@ function LiquidationPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <TextField
                             fullWidth
                             label="Documento Cedente"
@@ -337,7 +337,7 @@ function LiquidationPage() {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <TextField
                             select fullWidth
                             label="Moeda"
@@ -351,7 +351,7 @@ function LiquidationPage() {
                         </TextField>
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid size={{ xs: 12 }}>
                         <Button
                             variant="contained"
                             color="secondary"
