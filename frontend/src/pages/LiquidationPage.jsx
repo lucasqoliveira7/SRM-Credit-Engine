@@ -76,7 +76,8 @@ function LiquidationPage() {
                 faceValue: Number(form.faceValue),
             });
             setLiquidationResult(data);
-            loadStatement(0);
+            setPage(0);
+            await loadStatement(0);
         } catch (err) {
             setLiquidationError(
                 err.response?.data?.error ||
