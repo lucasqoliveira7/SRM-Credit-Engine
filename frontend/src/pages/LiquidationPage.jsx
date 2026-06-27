@@ -224,24 +224,6 @@ function LiquidationPage() {
             <Paper elevation={3} sx={{ p: 3, mb: 3, borderRadius: 3 }}>
                 <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
                     <TextField
-                        type="date"
-                        label="Data Início"
-                        name="startDate"
-                        value={filters.startDate}
-                        onChange={handleFilterChange}
-                        InputLabelProps={{ shrink: true }}
-                        sx={{ minWidth: 180 }}
-                    />
-                    <TextField
-                        type="date"
-                        label="Data Fim"
-                        name="endDate"
-                        value={filters.endDate}
-                        onChange={handleFilterChange}
-                        InputLabelProps={{ shrink: true }}
-                        sx={{ minWidth: 180 }}
-                    />
-                    <TextField
                         label="Documento Cedente"
                         name="cedentDocument"
                         value={filters.cedentDocument}
