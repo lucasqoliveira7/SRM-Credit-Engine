@@ -8,6 +8,7 @@ import {
     MenuItem,
     Pagination,
     Paper,
+    Stack,
     Table,
     TableBody,
     TableCell,
@@ -220,30 +221,49 @@ function LiquidationPage() {
                 Extrato de Liquidações
             </Typography>
 
-            <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} md={3}>
-                        <TextField fullWidth type="date" label="Data Início" name="startDate" value={filters.startDate} onChange={handleFilterChange} InputLabelProps={{ shrink: true }} />
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <TextField fullWidth type="date" label="Data Fim" name="endDate" value={filters.endDate} onChange={handleFilterChange} InputLabelProps={{ shrink: true }} />
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <TextField fullWidth label="Documento Cedente" name="cedentDocument" value={filters.cedentDocument} onChange={handleFilterChange} />
-                    </Grid>
-                    <Grid item xs={12} md={3}>
-                        <TextField select fullWidth label="Moeda" name="currency" value={filters.currency} onChange={handleFilterChange}>
-                            <MenuItem value="">Todas</MenuItem>
-                            <MenuItem value="BRL">BRL</MenuItem>
-                            <MenuItem value="USD">USD</MenuItem>
-                        </TextField>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button variant="contained" color="secondary" onClick={handleSearch} sx={{ minWidth: 140, px: 3 }}>
-                            Pesquisar
-                        </Button>
-                    </Grid>
-                </Grid>
+            <Paper elevation={3} sx={{ p: 3, mb: 3, borderRadius: 3 }}>
+                <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
+                    <TextField
+                        type="date"
+                        label="Data Início"
+                        name="startDate"
+                        value={filters.startDate}
+                        onChange={handleFilterChange}
+                        InputLabelProps={{ shrink: true }}
+                        sx={{ minWidth: 180 }}
+                    />
+                    <TextField
+                        type="date"
+                        label="Data Fim"
+                        name="endDate"
+                        value={filters.endDate}
+                        onChange={handleFilterChange}
+                        InputLabelProps={{ shrink: true }}
+                        sx={{ minWidth: 180 }}
+                    />
+                    <TextField
+                        label="Documento Cedente"
+                        name="cedentDocument"
+                        value={filters.cedentDocument}
+                        onChange={handleFilterChange}
+                        sx={{ minWidth: 200 }}
+                    />
+                    <TextField
+                        select
+                        label="Moeda"
+                        name="currency"
+                        value={filters.currency}
+                        onChange={handleFilterChange}
+                        sx={{ minWidth: 150 }}
+                    >
+                        <MenuItem value="">Todas</MenuItem>
+                        <MenuItem value="BRL">BRL</MenuItem>
+                        <MenuItem value="USD">USD</MenuItem>
+                    </TextField>
+                </Stack>
+                <Button variant="contained" color="secondary" onClick={handleSearch} sx={{ minWidth: 140, px: 3 }}>
+                    Pesquisar
+                </Button>
             </Paper>
 
             {statementError && (
