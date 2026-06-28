@@ -34,7 +34,7 @@ function LiquidationPage() {
     });
 
     const [liquidationResult, setLiquidationResult] = useState(null);
-    const [liquidationError, setLiquidationError] = useState("");
+    const [liquidationError, setLiquidationError] = useState([]);
 
     const [filters, setFilters] = useState({
         startDate: "",
@@ -68,34 +68,30 @@ function LiquidationPage() {
 
     async function handleLiquidate(event) {
         event.preventDefault();
-        setLiquidationError("");
+        setLiquidationError([]);
         setLiquidationResult(null);
 
-        if (!form.cedentName || !form.cedentName.trim()) {
-            setLiquidationError("Preencha o campo Nome do Cedente.");
-            return;
-        }
-        if (!form.cedentDocument || !form.cedentDocument.trim()) {
-            setLiquidationError("Preencha o campo Documento do Cedente.");
-            return;
-        }
-        if (!form.faceValue || Number(form.faceValue) <= 0) {
-            setLiquidationError("Preencha o campo Valor de Face com um valor maior que zero.");
-            return;
-        }
+        const errors = [];
+        if (!form.cedentName || !form.cedentName.trim())
+            errors.push("Preencha o campo Nome do Cedente.");
+        if (!form.cedentDocument || !form.cedentDocument.trim())
+            errors.push("Preencha o campo Documento do Cedente.");
+        if (!form.faceValue || Number(form.faceValue) <= 0)
+            errors.push("Preencha o campo Valor de Face com um valor maior que zero.");
         if (!form.dueDate) {
-            setLiquidationError("Preencha a Data de Vencimento.");
-            return;
+            errors.push("Preencha a Data de Vencimento.");
+        } else {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const due = new Date(form.dueDate + "T00:00:00");
+            if (isNaN(due.getTime()) || due <= today)
+                errors.push("Data de Vencimento inválida. Informe uma data futura.");
         }
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const due = new Date(form.dueDate + "T00:00:00");
-        if (isNaN(due.getTime()) || due <= today) {
-            setLiquidationError("Data de Vencimento inválida. Informe uma data futura.");
-            return;
-        }
-        if (form.receivableCurrency === "BRL" && form.paymentCurrency === "USD") {
-            setLiquidationError("Conversão BRL → USD não está disponível. Utilize USD → BRL para recebíveis em dólar.");
+        if (form.receivableCurrency === "BRL" && form.paymentCurrency === "USD")
+            errors.push("Conversão BRL → USD não está disponível. Utilize USD → BRL para recebíveis em dólar.");
+
+        if (errors.length > 0) {
+            setLiquidationError(errors);
             return;
         }
 
@@ -108,11 +104,11 @@ function LiquidationPage() {
             setPage(0);
             await loadStatement(0);
         } catch (err) {
-            setLiquidationError(
+            setLiquidationError([
                 err.response?.data?.error ||
                 err.response?.data?.message ||
                 "Erro ao liquidar recebível."
-            );
+            ]);
         }
     }
 
@@ -206,9 +202,17 @@ function LiquidationPage() {
                 </Box>
             </Paper>
 
-            {liquidationError && (
+            {liquidationError.length > 0 && (
                 <Alert severity="error" sx={{ mb: 3 }}>
-                    {liquidationError}
+                    {liquidationError.length === 1 ? (
+                        liquidationError[0]
+                    ) : (
+                        <ul style={{ margin: 0, paddingLeft: 20 }}>
+                            {liquidationError.map((msg, i) => (
+                                <li key={i}>{msg}</li>
+                            ))}
+                        </ul>
+                    )}
                 </Alert>
             )}
 
