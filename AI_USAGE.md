@@ -111,8 +111,3 @@ Todo o código gerado foi analisado, ajustado e validado manualmente antes da ut
 
 As decisões arquiteturais, regras de negócio, integrações e validações permaneceram sob responsabilidade do desenvolvedor.
 
----
-
-# Considerações Finais
-
-A Inteligência Artificial foi utilizada como ferramenta de apoio ao desenvolvimento, não substituindo o conhecimento técnico necessário para compreender, revisar e evoluir a solução implementada.
