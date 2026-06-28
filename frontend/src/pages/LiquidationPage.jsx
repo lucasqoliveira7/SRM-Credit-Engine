@@ -333,44 +333,55 @@ function LiquidationPage() {
                 {totalElements} liquidações encontradas
             </Typography>
 
-            <TableContainer component={Paper} elevation={3} sx={{ borderRadius: 3, overflowX: "auto" }}>
-                <Table sx={{ minWidth: 1100 }}>
+            <TableContainer component={Paper} elevation={0} sx={{ borderRadius: 3, overflowX: "auto", border: "0.5px solid", borderColor: "divider" }}>
+                <Table sx={{ minWidth: 1000 }}>
                     <TableHead>
-                        <TableRow>
-                            <TableCell>ID</TableCell>
-                            <TableCell>Data</TableCell>
-                            <TableCell>Cedente</TableCell>
-                            <TableCell>Documento</TableCell>
-                            <TableCell>Tipo</TableCell>
-                            <TableCell>Valor Face</TableCell>
-                            <TableCell>Valor Presente</TableCell>
-                            <TableCell>Moeda Recebível</TableCell>
-                            <TableCell>Moeda Pagamento</TableCell>
-                            <TableCell>Cotação</TableCell>
-                            <TableCell>Status</TableCell>
+                        <TableRow sx={{ bgcolor: "rgba(27,35,86,0.05)" }}>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Data</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Cedente</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Documento</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Tipo</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Valor Face</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Valor Presente</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Moeda Recebível</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Moeda Pagamento</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Cotação</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.settlementId}>
-                                <TableCell>{row.settlementId}</TableCell>
-                                <TableCell>
-                                    {row.settledAt ? new Date(row.settledAt).toLocaleDateString("pt-BR") : "-"}
-                                </TableCell>
+                        {rows.map((row, index) => (
+                            <TableRow
+                                key={row.settlementId}
+                                sx={{ bgcolor: index % 2 === 1 ? "rgba(0,0,0,0.02)" : "transparent" }}
+                            >
+                                <TableCell>{row.settledAt ? new Date(row.settledAt).toLocaleDateString("pt-BR") : "-"}</TableCell>
                                 <TableCell>{row.cedentName}</TableCell>
                                 <TableCell>{row.cedentDocument}</TableCell>
-                                <TableCell>{row.type}</TableCell>
+                                <TableCell>
+                                    <Chip
+                                        label={row.type}
+                                        size="small"
+                                        sx={{ bgcolor: "rgba(24,95,165,0.1)", color: "#185FA5", fontWeight: 500, fontSize: "0.72rem" }}
+                                    />
+                                </TableCell>
                                 <TableCell>{formatNumber(row.faceValue)}</TableCell>
                                 <TableCell>{formatNumber(row.presentValue)}</TableCell>
                                 <TableCell>{row.receivableCurrency}</TableCell>
                                 <TableCell>{row.paymentCurrency}</TableCell>
                                 <TableCell>{formatNumber(row.exchangeRate)}</TableCell>
-                                <TableCell>{row.status}</TableCell>
+                                <TableCell>
+                                    <Chip
+                                        label={row.status}
+                                        size="small"
+                                        sx={{ bgcolor: "rgba(59,109,17,0.1)", color: "#3B6D11", fontWeight: 500, fontSize: "0.72rem" }}
+                                    />
+                                </TableCell>
                             </TableRow>
                         ))}
                         {rows.length === 0 && (
                             <TableRow>
-                                <TableCell align="center" colSpan={11}>
+                                <TableCell align="center" colSpan={10}>
                                     Nenhuma liquidação encontrada.
                                 </TableCell>
                             </TableRow>
