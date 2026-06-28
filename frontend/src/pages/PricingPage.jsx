@@ -179,17 +179,31 @@ function PricingPage() {
                                 elevation={3}
                                 sx={{ p: 3, borderRadius: 3, borderLeft: "4px solid", borderColor: "secondary.main" }}
                             >
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, alignItems: "center" }}>
-                                    <Chip
-                                        label={result.type}
-                                        size="small"
-                                        sx={{
-                                            fontWeight: 700,
-                                            fontSize: "0.72rem",
-                                            bgcolor: result.type === "DUPLICATA" ? "rgba(27,35,86,0.1)" : "rgba(255,138,0,0.15)",
-                                            color: result.type === "DUPLICATA" ? "primary.main" : "secondary.dark",
-                                        }}
-                                    />
+                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, alignItems: "flex-end" }}>
+                                    {/* ID */}
+                                    <Box sx={{ minWidth: 32 }}>
+                                        <Typography variant="caption" color="text.secondary" display="block">ID</Typography>
+                                        <Typography variant="body1" fontWeight={700} color="text.secondary">
+                                            {results.length - index}#
+                                        </Typography>
+                                    </Box>
+
+                                    {/* Tipo com chip */}
+                                    <Box>
+                                        <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5 }}>Tipo</Typography>
+                                        <Chip
+                                            label={result.type}
+                                            size="small"
+                                            sx={{
+                                                fontWeight: 700,
+                                                fontSize: "0.75rem",
+                                                bgcolor: result.type === "DUPLICATA" ? "rgba(27,35,86,0.1)" : "rgba(255,138,0,0.15)",
+                                                color: result.type === "DUPLICATA" ? "primary.main" : "secondary.dark",
+                                            }}
+                                        />
+                                    </Box>
+
+                                    {/* Demais campos */}
                                     {[
                                         ["Moeda", result.currency],
                                         ["Vencimento", formatDate(result.dueDate)],
