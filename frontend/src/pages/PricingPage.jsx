@@ -141,7 +141,7 @@ function PricingPage() {
                         sx={{ minWidth: 190 }}
                     />
 
-                    <Button type="submit" variant="contained" color="secondary" size="large" sx={{ px: 4, fontWeight: 700, color: "primary.dark" }}>
+                    <Button type="submit" variant="contained" color="secondary" size="large" sx={{ px: 4, fontWeight: 700, color: "white" }}>
                         Simular
                     </Button>
                 </Box>
