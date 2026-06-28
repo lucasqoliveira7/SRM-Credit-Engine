@@ -86,7 +86,7 @@ function PricingPage() {
                     <Typography variant="h5" fontWeight={700} lineHeight={1.2}>
                         Simulação de Precificação
                     </Typography>
-                    <Typography variant="caption" color="text.secondary">
+                    <Typography variant="body2" color="text.secondary">
                         Calcule o valor presente de recebíveis com precisão decimal
                     </Typography>
                 </Box>
@@ -96,7 +96,7 @@ function PricingPage() {
                 <Box
                     component="form"
                     onSubmit={handleSubmit}
-                    sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "flex-end" }}
+                    sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "center" }}
                 >
                     <TextField
                         select
