@@ -3,7 +3,6 @@ import {
     Alert,
     Box,
     Button,
-    Chip,
     Grid,
     MenuItem,
     Paper,
@@ -179,40 +178,29 @@ function PricingPage() {
                                 elevation={3}
                                 sx={{ p: 3, borderRadius: 3, borderLeft: "4px solid", borderColor: "secondary.main" }}
                             >
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, alignItems: "flex-end" }}>
-                                    {/* ID */}
-                                    <Box sx={{ minWidth: 32 }}>
-                                        <Typography variant="caption" color="text.secondary" display="block">ID</Typography>
-                                        <Typography variant="body1" fontWeight={700} color="text.secondary">
-                                            {results.length - index}#
-                                        </Typography>
-                                    </Box>
-
-                                    {/* Tipo com chip */}
-                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
-                                        <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>Tipo</Typography>
-                                        <Chip
-                                            label={result.type}
-                                            size="small"
-                                            sx={{
-                                                fontWeight: 700,
-                                                fontSize: "0.75rem",
-                                                bgcolor: result.type === "DUPLICATA" ? "rgba(27,35,86,0.1)" : "rgba(255,138,0,0.15)",
-                                                color: result.type === "DUPLICATA" ? "primary.main" : "secondary.dark",
-                                            }}
-                                        />
-                                    </Box>
-
-                                    {/* Demais campos */}
+                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, alignItems: "flex-start" }}>
                                     {[
+                                        ["ID", `${results.length - index}#`],
+                                        ["Tipo", result.type],
                                         ["Moeda", result.currency],
                                         ["Vencimento", formatDate(result.dueDate)],
                                         ["Valor de Face", formatNumber(result.faceValue)],
                                         ["Valor Presente", formatNumber(result.presentValue)],
                                     ].map(([label, value]) => (
-                                        <Box key={label} sx={{ minWidth: 120 }}>
+                                        <Box key={label} sx={{ minWidth: 100 }}>
                                             <Typography variant="caption" color="text.secondary" display="block">{label}</Typography>
-                                            <Typography variant="body1" fontWeight={600}>{value}</Typography>
+                                            <Typography
+                                                variant="body1"
+                                                fontWeight={600}
+                                                sx={{
+                                                    color:
+                                                        label === "Tipo" && value === "DUPLICATA" ? "primary.main" :
+                                                        label === "Tipo" && value === "CHEQUE" ? "secondary.dark" :
+                                                        "text.primary",
+                                                }}
+                                            >
+                                                {value}
+                                            </Typography>
                                         </Box>
                                     ))}
                                 </Box>
