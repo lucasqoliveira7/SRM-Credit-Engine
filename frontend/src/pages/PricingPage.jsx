@@ -178,7 +178,7 @@ function PricingPage() {
                                 elevation={3}
                                 sx={{ p: 3, borderRadius: 3, borderLeft: "4px solid", borderColor: "secondary.main" }}
                             >
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 4, alignItems: "flex-start" }}>
+                                <Box sx={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                                     {[
                                         ["ID", `${results.length - index}#`],
                                         ["Tipo", result.type],
@@ -187,11 +187,13 @@ function PricingPage() {
                                         ["Valor de Face", formatNumber(result.faceValue)],
                                         ["Valor Presente", formatNumber(result.presentValue)],
                                     ].map(([label, value]) => (
-                                        <Box key={label} sx={{ minWidth: 100 }}>
-                                            <Typography variant="caption" color="text.secondary" display="block">{label}</Typography>
+                                        <Box key={label}>
+                                            <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5 }}>
+                                                {label}
+                                            </Typography>
                                             <Typography
-                                                variant="body1"
-                                                fontWeight={600}
+                                                variant="body2"
+                                                fontWeight={700}
                                                 sx={{
                                                     color:
                                                         label === "Tipo" && value === "DUPLICATA" ? "primary.main" :
