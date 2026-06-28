@@ -51,6 +51,9 @@ public class LiquidationController {
             LocalDate endDate,
 
             @RequestParam(required = false)
+            String cedentName,
+
+            @RequestParam(required = false)
             String cedentDocument,
 
             @RequestParam(required = false)
@@ -62,6 +65,7 @@ public class LiquidationController {
         return liquidationService.getStatement(
                 startDate,
                 endDate,
+                cedentName,
                 cedentDocument,
                 currency,
                 pageable

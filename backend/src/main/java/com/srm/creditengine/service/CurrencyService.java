@@ -32,6 +32,15 @@ public class CurrencyService {
         return amount.multiply(exchangeRate);
     }
 
+    public CurrencyRate updateRate(Long id, CurrencyRateRequest request) {
+        CurrencyRate existing = currencyRateRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Taxa de câmbio não encontrada."));
+
+        existing.setRate(request.rate());
+        existing.setReferenceDate(request.referenceDate());
+        return currencyRateRepository.save(existing);
+    }
+
     public CurrencyRate saveRate(CurrencyRateRequest request) {
         CurrencyRate rate = CurrencyRate.builder()
                 .fromCurrency(request.fromCurrency().name())

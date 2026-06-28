@@ -42,7 +42,7 @@ Armazena taxas de câmbio.
 | from_currency | VARCHAR(3) | Moeda origem |
 | to_currency | VARCHAR(3) | Moeda destino |
 | rate | NUMERIC(19,8) | Taxa de conversão |
-| reference_date | TIMESTAMP | Data de referência |
+| reference_date | DATE | Data de referência |
 | created_at | TIMESTAMP | Data de criação |
 
 ---
@@ -60,6 +60,7 @@ Representa a liquidação financeira do recebível.
 | exchange_rate | NUMERIC(19,8) | Taxa usada na conversão |
 | status | VARCHAR(30) | Status da liquidação |
 | settled_at | TIMESTAMP | Data da liquidação |
+| version | BIGINT | Versão para Optimistic Locking |
 
 ---
 

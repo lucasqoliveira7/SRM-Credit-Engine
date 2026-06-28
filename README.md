@@ -141,6 +141,7 @@ SRM-Credit-Engine
 │
 ├── docs
 │   ├── DDL.sql
+│   ├── DER.md
 │   └── ER_DIAGRAM.md
 │
 ├── docker-compose.yml
@@ -202,37 +203,42 @@ http://localhost:8080/swagger-ui/index.html
 
 # Como Executar
 
-## Banco
+## Com Docker (recomendado)
+
+```bash
+docker compose up -d
+```
+
+Todos os serviços sobem juntos: banco, backend e frontend.
+
+| Serviço | URL |
+|---|---|
+| Frontend | http://localhost:5173 |
+| Backend / Swagger | http://localhost:8080/swagger-ui/index.html |
+| PostgreSQL | localhost:5432 |
+
+---
+
+## Sem Docker (desenvolvimento local)
+
+### Banco
 
 ```bash
 docker compose up postgres
 ```
 
----
-
-## Backend
+### Backend
 
 ```bash
 cd backend
-
 mvn spring-boot:run
 ```
 
-ou
-
-```bash
-./mvnw spring-boot:run
-```
-
----
-
-## Frontend
+### Frontend
 
 ```bash
 cd frontend
-
 npm install
-
 npm run dev
 ```
 
@@ -253,6 +259,7 @@ http://localhost:5173
 * Repository Pattern
 * REST API
 * Exception Handler Global
+* Optimistic Locking (controle de concorrência em liquidações)
 
 ---
 
@@ -269,18 +276,6 @@ http://localhost:5173
 * Flyway
 * PostgreSQL
 * React + Material UI
-
----
-
-# Melhorias Futuras
-
-* Autenticação JWT
-* Cache Redis
-* Mensageria com RabbitMQ
-* Observabilidade (Prometheus/Grafana)
-* Testes de Integração
-* CI/CD com GitHub Actions
-* Docker completo (Frontend + Backend)
 
 ---
 

@@ -57,6 +57,10 @@ public class LiquidationService {
     public LiquidationResponse liquidate(LiquidationRequest request) {
 
         Cedent cedent = cedentRepository.findByDocument(request.cedentDocument())
+                .map(existing -> {
+                    existing.setName(request.cedentName());
+                    return cedentRepository.save(existing);
+                })
                 .orElseGet(() -> cedentRepository.save(
                         Cedent.builder()
                                 .name(request.cedentName())
@@ -100,6 +104,7 @@ public class LiquidationService {
     public Page<LiquidationStatementResponse> getStatement(
             LocalDate startDate,
             LocalDate endDate,
+            String cedentName,
             String cedentDocument,
             CurrencyCode currency,
             Pageable pageable
@@ -124,11 +129,20 @@ public class LiquidationService {
             );
         }
 
+        if (cedentName != null && !cedentName.isBlank()) {
+            spec = spec.and((root, query, cb) ->
+                    cb.like(
+                            cb.lower(root.get("receivable").get("cedent").get("name")),
+                            "%" + cedentName.toLowerCase() + "%"
+                    )
+            );
+        }
+
         if (cedentDocument != null && !cedentDocument.isBlank()) {
             spec = spec.and((root, query, cb) ->
-                    cb.equal(
+                    cb.like(
                             root.get("receivable").get("cedent").get("document"),
-                            cedentDocument
+                            "%" + cedentDocument + "%"
                     )
             );
         }
