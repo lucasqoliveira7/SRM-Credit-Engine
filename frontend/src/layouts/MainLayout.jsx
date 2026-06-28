@@ -88,7 +88,7 @@ function MainLayout({ children }) {
                                         sx={{
                                             px: 3,
                                             py: 1,
-                                            borderRadius: "50px",
+                                            borderRadius: "10px",
                                             fontWeight: 700,
                                             fontSize: "0.875rem",
                                             color: active ? "primary.dark" : "white",
