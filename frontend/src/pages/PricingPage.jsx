@@ -4,12 +4,13 @@ import {
     Box,
     Button,
     Chip,
-    Grid,
+    Divider,
     MenuItem,
     Paper,
     TextField,
     Typography
 } from "@mui/material";
+import CalculateIcon from "@mui/icons-material/Calculate";
 import { simulatePricing } from "../services/pricingService";
 
 function formatNumber(value) {
@@ -77,68 +78,94 @@ function PricingPage() {
 
     return (
         <Box>
-            <Typography variant="h4" gutterBottom>
-                Simulação de Precificação
-            </Typography>
+            {/* Hero */}
+            <Paper
+                elevation={0}
+                sx={{
+                    p: { xs: 4, md: 6 },
+                    mb: 4,
+                    borderRadius: 4,
+                    background: "linear-gradient(135deg, #071126 0%, #1B2356 60%, #203A75 100%)",
+                    color: "white",
+                    position: "relative",
+                    overflow: "hidden",
+                }}
+            >
+                <Box sx={{ position: "absolute", top: -60, right: -60, width: 260, height: 260, borderRadius: "50%", background: "rgba(255,138,0,0.07)", pointerEvents: "none" }} />
 
-            <Paper elevation={3} sx={{ p: 4, mb: 4 }}>
-                <Box component="form" onSubmit={handleSubmit}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                select fullWidth
-                                label="Tipo do Recebível"
-                                name="type"
-                                value={form.type}
-                                onChange={handleChange}
-                            >
-                                <MenuItem value="DUPLICATA">Duplicata</MenuItem>
-                                <MenuItem value="CHEQUE">Cheque</MenuItem>
-                            </TextField>
-                        </Grid>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2 }}>
+                    <CalculateIcon sx={{ color: "secondary.main", fontSize: 20 }} />
+                    <Typography variant="overline" sx={{ color: "secondary.main", fontWeight: 700, letterSpacing: 2 }}>
+                        Precificação
+                    </Typography>
+                </Box>
 
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                select fullWidth
-                                label="Moeda"
-                                name="currency"
-                                value={form.currency}
-                                onChange={handleChange}
-                            >
-                                <MenuItem value="BRL">BRL</MenuItem>
-                                <MenuItem value="USD">USD</MenuItem>
-                            </TextField>
-                        </Grid>
+                <Typography variant="h4" fontWeight={800} sx={{ mb: 1, lineHeight: 1.2 }}>
+                    Simulação de <Box component="span" sx={{ color: "secondary.main" }}>Precificação</Box>
+                </Typography>
+                <Typography sx={{ color: "rgba(255,255,255,0.6)", fontSize: "0.95rem" }}>
+                    Calcule o valor presente de recebíveis com precisão decimal.
+                </Typography>
 
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                fullWidth
-                                label="Valor de Face"
-                                name="faceValue"
-                                type="number"
-                                value={form.faceValue}
-                                onChange={handleChange}
-                            />
-                        </Grid>
+                <Divider sx={{ borderColor: "rgba(255,255,255,0.1)", mt: 4, mb: 3 }} />
 
-                        <Grid item xs={12} md={6}>
-                            <TextField
-                                fullWidth
-                                label="Data de Vencimento"
-                                name="dueDate"
-                                type="date"
-                                value={form.dueDate}
-                                onChange={handleChange}
-                                slotProps={{ inputLabel: { shrink: true } }}
-                            />
-                        </Grid>
+                <Box
+                    component="form"
+                    onSubmit={handleSubmit}
+                    sx={{ display: "flex", flexWrap: "wrap", gap: 2, alignItems: "flex-end" }}
+                >
+                    <TextField
+                        select
+                        label="Tipo do Recebível"
+                        name="type"
+                        value={form.type}
+                        onChange={handleChange}
+                        sx={{ minWidth: 160, "& .MuiInputLabel-root": { color: "rgba(255,255,255,0.6)" }, "& .MuiOutlinedInput-root": { color: "white", "& fieldset": { borderColor: "rgba(255,255,255,0.25)" }, "&:hover fieldset": { borderColor: "rgba(255,255,255,0.5)" } }, "& .MuiSvgIcon-root": { color: "white" } }}
+                    >
+                        <MenuItem value="DUPLICATA">Duplicata</MenuItem>
+                        <MenuItem value="CHEQUE">Cheque</MenuItem>
+                    </TextField>
 
-                        <Grid item xs={12}>
-                            <Button type="submit" variant="contained" color="secondary" size="large">
-                                Simular
-                            </Button>
-                        </Grid>
-                    </Grid>
+                    <TextField
+                        select
+                        label="Moeda"
+                        name="currency"
+                        value={form.currency}
+                        onChange={handleChange}
+                        sx={{ minWidth: 120, "& .MuiInputLabel-root": { color: "rgba(255,255,255,0.6)" }, "& .MuiOutlinedInput-root": { color: "white", "& fieldset": { borderColor: "rgba(255,255,255,0.25)" }, "&:hover fieldset": { borderColor: "rgba(255,255,255,0.5)" } }, "& .MuiSvgIcon-root": { color: "white" } }}
+                    >
+                        <MenuItem value="BRL">BRL</MenuItem>
+                        <MenuItem value="USD">USD</MenuItem>
+                    </TextField>
+
+                    <TextField
+                        label="Valor de Face"
+                        name="faceValue"
+                        type="number"
+                        value={form.faceValue}
+                        onChange={handleChange}
+                        sx={{ minWidth: 180, "& .MuiInputLabel-root": { color: "rgba(255,255,255,0.6)" }, "& .MuiOutlinedInput-root": { color: "white", "& fieldset": { borderColor: "rgba(255,255,255,0.25)" }, "&:hover fieldset": { borderColor: "rgba(255,255,255,0.5)" } } }}
+                    />
+
+                    <TextField
+                        label="Data de Vencimento"
+                        name="dueDate"
+                        type="date"
+                        value={form.dueDate}
+                        onChange={handleChange}
+                        slotProps={{ inputLabel: { shrink: true } }}
+                        sx={{ minWidth: 190, "& .MuiInputLabel-root": { color: "rgba(255,255,255,0.6)" }, "& .MuiOutlinedInput-root": { color: "white", "& fieldset": { borderColor: "rgba(255,255,255,0.25)" }, "&:hover fieldset": { borderColor: "rgba(255,255,255,0.5)" } }, "& input[type='date']::-webkit-calendar-picker-indicator": { filter: "invert(1)" } }}
+                    />
+
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="secondary"
+                        size="large"
+                        sx={{ px: 4, fontWeight: 700, color: "primary.dark" }}
+                    >
+                        Simular
+                    </Button>
                 </Box>
             </Paper>
 
