@@ -31,7 +31,7 @@ function PricingPage() {
     });
 
     const [results, setResults] = useState([]);
-    const [error, setError] = useState("");
+    const [error, setError] = useState([]);
 
     function handleChange(event) {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -39,21 +39,23 @@ function PricingPage() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        setError("");
+        setError([]);
 
-        if (!form.faceValue || Number(form.faceValue) <= 0) {
-            setError("Preencha o campo Valor de Face com um valor maior que zero.");
-            return;
-        }
+        const errors = [];
+        if (!form.faceValue || Number(form.faceValue) <= 0)
+            errors.push("Preencha o campo Valor de Face com um valor maior que zero.");
         if (!form.dueDate) {
-            setError("Preencha a Data de Vencimento.");
-            return;
+            errors.push("Preencha a Data de Vencimento.");
+        } else {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const due = new Date(form.dueDate + "T00:00:00");
+            if (isNaN(due.getTime()) || due <= today)
+                errors.push("Data de Vencimento inválida. Informe uma data futura.");
         }
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const due = new Date(form.dueDate + "T00:00:00");
-        if (isNaN(due.getTime()) || due <= today) {
-            setError("Data de Vencimento inválida. Informe uma data futura.");
+
+        if (errors.length > 0) {
+            setError(errors);
             return;
         }
 
@@ -64,11 +66,11 @@ function PricingPage() {
             });
             setResults(prev => [data, ...prev]);
         } catch (err) {
-            setError(
+            setError([
                 err.response?.data?.error ||
                 err.response?.data?.message ||
                 "Erro ao simular precificação. Verifique se o backend está rodando."
-            );
+            ]);
         }
     }
 
@@ -139,9 +141,17 @@ function PricingPage() {
                 </Box>
             </Paper>
 
-            {error && (
+            {error.length > 0 && (
                 <Alert severity="error" sx={{ mb: 3 }}>
-                    {error}
+                    {error.length === 1 ? (
+                        error[0]
+                    ) : (
+                        <ul style={{ margin: 0, paddingLeft: 20 }}>
+                            {error.map((msg, i) => (
+                                <li key={i}>{msg}</li>
+                            ))}
+                        </ul>
+                    )}
                 </Alert>
             )}
 
