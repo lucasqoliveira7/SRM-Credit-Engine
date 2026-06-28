@@ -226,8 +226,8 @@ function LiquidationPage() {
                         borderRadius: 3,
                         border: "0.5px solid",
                         borderColor: "divider",
-                        borderTop: "4px solid",
-                        borderTopColor: "success.main",
+                        borderLeft: "4px solid",
+                        borderLeftColor: "success.main",
                     }}
                 >
                     <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2, pb: 1.5, borderBottom: "0.5px solid", borderColor: "divider" }}>
