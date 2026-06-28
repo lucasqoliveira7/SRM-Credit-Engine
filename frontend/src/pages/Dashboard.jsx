@@ -105,29 +105,31 @@ function Dashboard() {
                 </Typography>
 
                 <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        size="large"
-                        onClick={() => navigate("/pricing")}
-                        sx={{ px: 4, fontWeight: 700 }}
-                    >
-                        Nova Simulação
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        size="large"
-                        onClick={() => navigate("/liquidation")}
-                        sx={{
-                            px: 4,
-                            fontWeight: 700,
-                            borderColor: "rgba(255,255,255,0.4)",
-                            color: "white",
-                            "&:hover": { borderColor: "white", bgcolor: "rgba(255,255,255,0.05)" },
-                        }}
-                    >
-                        Liquidação
-                    </Button>
+                    {[
+                        { label: "Nova Simulação", path: "/pricing" },
+                        { label: "Liquidação", path: "/liquidation" },
+                    ].map(({ label, path }) => (
+                        <Button
+                            key={label}
+                            size="large"
+                            onClick={() => navigate(path)}
+                            sx={{
+                                px: 4,
+                                fontWeight: 700,
+                                color: "white",
+                                bgcolor: "transparent",
+                                border: "1.5px solid rgba(255,255,255,0.35)",
+                                "&:hover": {
+                                    bgcolor: "secondary.main",
+                                    borderColor: "secondary.main",
+                                    color: "primary.dark",
+                                },
+                                transition: "all 0.2s",
+                            }}
+                        >
+                            {label}
+                        </Button>
+                    ))}
                 </Box>
 
                 {/* Métricas */}
@@ -147,14 +149,14 @@ function Dashboard() {
             </Paper>
 
             {/* Cards de funcionalidades */}
-            <Grid container spacing={3}>
+            <Grid container spacing={3} alignItems="stretch">
                 {features.map(({ icon, title, description, action, path }) => (
-                    <Grid item xs={12} md={4} key={title}>
+                    <Grid item xs={12} md={4} key={title} sx={{ display: "flex" }}>
                         <Paper
                             elevation={2}
                             sx={{
                                 p: 4,
-                                height: "100%",
+                                width: "100%",
                                 display: "flex",
                                 flexDirection: "column",
                                 borderRadius: 4,
@@ -165,26 +167,31 @@ function Dashboard() {
                                 },
                             }}
                         >
-                            <Box
-                                sx={{
-                                    width: 64,
-                                    height: 64,
-                                    borderRadius: 3,
-                                    bgcolor: "rgba(255,138,0,0.08)",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    mb: 3,
-                                }}
-                            >
-                                {icon}
+                            {/* Ícone + Título lado a lado */}
+                            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2.5 }}>
+                                <Box
+                                    sx={{
+                                        width: 52,
+                                        height: 52,
+                                        minWidth: 52,
+                                        borderRadius: 2.5,
+                                        bgcolor: "rgba(255,138,0,0.09)",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                    }}
+                                >
+                                    {icon}
+                                </Box>
+                                <Typography variant="h6" fontWeight={700} lineHeight={1.3}>
+                                    {title}
+                                </Typography>
                             </Box>
-                            <Typography variant="h6" fontWeight={700} sx={{ mb: 1.5 }}>
-                                {title}
-                            </Typography>
+
                             <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8, flexGrow: 1 }}>
                                 {description}
                             </Typography>
+
                             <Button
                                 variant="text"
                                 color="secondary"
