@@ -181,8 +181,8 @@ function PricingPage() {
                             >
                                 <Box sx={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                                     {/* Tipo com Chip */}
-                                    <Box>
-                                        <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5, fontWeight: 500 }}>
+                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                        <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5, fontWeight: 500 }}>
                                             Tipo
                                         </Typography>
                                         <Chip
