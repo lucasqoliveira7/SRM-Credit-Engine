@@ -107,7 +107,7 @@ function Dashboard() {
 
                 <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
                     {[
-                        { label: "Nova Simulação", path: "/pricing" },
+                        { label: "Simulação", path: "/pricing" },
                         { label: "Liquidação", path: "/liquidation" },
                     ].map(({ label, path }) => (
                         <Button

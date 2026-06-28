@@ -18,6 +18,7 @@ const navItems = [
     { label: "Dashboard", to: "/", icon: <DashboardIcon fontSize="small" /> },
     { label: "Simulação", to: "/pricing", icon: <CalculateIcon fontSize="small" /> },
     { label: "Liquidação", to: "/liquidation", icon: <DescriptionIcon fontSize="small" /> },
+
 ];
 
 function MainLayout({ children }) {
@@ -94,7 +95,7 @@ function MainLayout({ children }) {
                                             color: active ? "primary.dark" : "white",
                                             bgcolor: active ? "secondary.main" : "transparent",
                                             border: "2px solid",
-                                            borderColor: active ? "secondary.main" : "rgba(255,255,255,0.6)",
+                                            borderColor: active ? "secondary.main" : "rgba(255,255,255,0.25)",
                                             "&:hover": {
                                                 bgcolor: "secondary.main",
                                                 borderColor: "secondary.main",
