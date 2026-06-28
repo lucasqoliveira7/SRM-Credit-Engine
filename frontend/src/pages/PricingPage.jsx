@@ -3,6 +3,7 @@ import {
     Alert,
     Box,
     Button,
+    Chip,
     Grid,
     MenuItem,
     Paper,
@@ -179,8 +180,24 @@ function PricingPage() {
                                 sx={{ px: 4, py: 3, borderRadius: 4, borderLeft: "4px solid", borderColor: "secondary.main" }}
                             >
                                 <Box sx={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+                                    {/* Tipo com Chip */}
+                                    <Box>
+                                        <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5, fontWeight: 500 }}>
+                                            Tipo
+                                        </Typography>
+                                        <Chip
+                                            label={result.type}
+                                            size="small"
+                                            sx={{
+                                                fontWeight: 700,
+                                                fontSize: "0.75rem",
+                                                bgcolor: result.type === "DUPLICATA" ? "rgba(27,35,86,0.1)" : "rgba(255,138,0,0.15)",
+                                                color: result.type === "DUPLICATA" ? "primary.main" : "secondary.dark",
+                                            }}
+                                        />
+                                    </Box>
+
                                     {[
-                                        ["Tipo", result.type],
                                         ["Moeda", result.currency],
                                         ["Vencimento", formatDate(result.dueDate)],
                                         ["Valor de Face", formatNumber(result.faceValue)],
@@ -190,16 +207,7 @@ function PricingPage() {
                                             <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5, fontWeight: 500 }}>
                                                 {label}
                                             </Typography>
-                                            <Typography
-                                                variant="body1"
-                                                fontWeight={600}
-                                                sx={{
-                                                    color:
-                                                        label === "Tipo" && value === "DUPLICATA" ? "primary.main" :
-                                                        label === "Tipo" && value === "CHEQUE" ? "secondary.dark" :
-                                                        "text.primary",
-                                                }}
-                                            >
+                                            <Typography variant="body1" fontWeight={600} color="text.primary">
                                                 {value}
                                             </Typography>
                                         </Box>
