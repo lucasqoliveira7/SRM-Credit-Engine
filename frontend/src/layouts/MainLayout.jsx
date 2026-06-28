@@ -86,15 +86,15 @@ function MainLayout({ children }) {
                                         to={to}
                                         startIcon={icon}
                                         sx={{
-                                            px: 2.5,
+                                            px: 3,
                                             py: 1,
-                                            borderRadius: 2,
+                                            borderRadius: "50px",
                                             fontWeight: 700,
                                             fontSize: "0.875rem",
                                             color: active ? "primary.dark" : "white",
                                             bgcolor: active ? "secondary.main" : "transparent",
-                                            border: "1.5px solid",
-                                            borderColor: active ? "secondary.main" : "rgba(255,255,255,0.3)",
+                                            border: "2px solid",
+                                            borderColor: active ? "secondary.main" : "rgba(255,255,255,0.6)",
                                             "&:hover": {
                                                 bgcolor: "secondary.main",
                                                 borderColor: "secondary.main",
