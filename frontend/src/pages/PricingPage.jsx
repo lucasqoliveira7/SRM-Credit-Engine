@@ -181,7 +181,7 @@ function PricingPage() {
                             >
                                 <Box sx={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                                     {/* Tipo com Chip */}
-                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                    <Box sx={{ display: "flex", flexDirection: "column", minWidth: 100 }}>
                                         <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5, fontWeight: 500 }}>
                                             Tipo
                                         </Typography>
@@ -191,8 +191,9 @@ function PricingPage() {
                                             sx={{
                                                 fontWeight: 700,
                                                 fontSize: "0.75rem",
-                                                bgcolor: result.type === "DUPLICATA" ? "rgba(27,35,86,0.1)" : "rgba(255,138,0,0.15)",
-                                                color: result.type === "DUPLICATA" ? "primary.main" : "secondary.dark",
+                                                alignSelf: "flex-start",
+                                                bgcolor: "rgba(27,35,86,0.1)",
+                                                color: "primary.main",
                                             }}
                                         />
                                     </Box>
