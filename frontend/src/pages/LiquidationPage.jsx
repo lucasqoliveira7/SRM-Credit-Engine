@@ -21,6 +21,7 @@ import {
     Typography,
 } from "@mui/material";
 
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { liquidateReceivable } from "../services/liquidationService";
@@ -273,18 +274,16 @@ function LiquidationPage() {
                         borderLeftColor: "success.main",
                     }}
                 >
-                    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2, pb: 1.5, borderBottom: "0.5px solid", borderColor: "divider" }}>
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                            <Typography variant="body1" fontWeight={500}>
-                                Liquidação Confirmada
-                            </Typography>
-                            <Chip
-                                label={liquidationResult.type}
-                                size="small"
-                                sx={{ bgcolor: "rgba(24,95,165,0.1)", color: "#185FA5", fontWeight: 500, fontSize: "0.75rem" }}
-                            />
-                        </Box>
-                        <Typography variant="caption" color="text.secondary">ID #{liquidationResult.settlementId}</Typography>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 2, pb: 1.5, borderBottom: "0.5px solid", borderColor: "divider" }}>
+                        <CheckCircleIcon sx={{ color: "success.main", fontSize: 22 }} />
+                        <Typography variant="body1" fontWeight={700} color="success.main">
+                            Liquidação Confirmada
+                        </Typography>
+                        <Chip
+                            label={liquidationResult.type}
+                            size="small"
+                            sx={{ bgcolor: "rgba(24,95,165,0.1)", color: "#185FA5", fontWeight: 500, fontSize: "0.75rem" }}
+                        />
                     </Box>
 
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
