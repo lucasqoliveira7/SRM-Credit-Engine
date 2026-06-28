@@ -175,12 +175,11 @@ function PricingPage() {
                         {results.map((result, index) => (
                             <Paper
                                 key={index}
-                                elevation={3}
-                                sx={{ p: 3, borderRadius: 3, borderLeft: "4px solid", borderColor: "secondary.main" }}
+                                elevation={2}
+                                sx={{ px: 4, py: 3, borderRadius: 4, borderLeft: "4px solid", borderColor: "secondary.main" }}
                             >
                                 <Box sx={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
                                     {[
-                                        ["ID", `${results.length - index}#`],
                                         ["Tipo", result.type],
                                         ["Moeda", result.currency],
                                         ["Vencimento", formatDate(result.dueDate)],
@@ -188,12 +187,12 @@ function PricingPage() {
                                         ["Valor Presente", formatNumber(result.presentValue)],
                                     ].map(([label, value]) => (
                                         <Box key={label}>
-                                            <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5 }}>
+                                            <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5, fontWeight: 500 }}>
                                                 {label}
                                             </Typography>
                                             <Typography
-                                                variant="body2"
-                                                fontWeight={700}
+                                                variant="body1"
+                                                fontWeight={600}
                                                 sx={{
                                                     color:
                                                         label === "Tipo" && value === "DUPLICATA" ? "primary.main" :
