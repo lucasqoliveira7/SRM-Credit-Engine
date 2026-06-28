@@ -71,6 +71,14 @@ function LiquidationPage() {
         setLiquidationError("");
         setLiquidationResult(null);
 
+        if (!form.cedentName || !form.cedentName.trim()) {
+            setLiquidationError("Preencha o campo Nome do Cedente.");
+            return;
+        }
+        if (!form.cedentDocument || !form.cedentDocument.trim()) {
+            setLiquidationError("Preencha o campo Documento do Cedente.");
+            return;
+        }
         if (!form.faceValue || Number(form.faceValue) <= 0) {
             setLiquidationError("Preencha o campo Valor de Face com um valor maior que zero.");
             return;
@@ -86,7 +94,6 @@ function LiquidationPage() {
             setLiquidationError("Data de Vencimento inválida. Informe uma data futura.");
             return;
         }
-
         if (form.receivableCurrency === "BRL" && form.paymentCurrency === "USD") {
             setLiquidationError("Conversão BRL → USD não está disponível. Utilize USD → BRL para recebíveis em dólar.");
             return;
