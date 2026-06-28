@@ -189,8 +189,8 @@ function PricingPage() {
                                     </Box>
 
                                     {/* Tipo com chip */}
-                                    <Box>
-                                        <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.5 }}>Tipo</Typography>
+                                    <Box sx={{ display: "flex", flexDirection: "column" }}>
+                                        <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>Tipo</Typography>
                                         <Chip
                                             label={result.type}
                                             size="small"
