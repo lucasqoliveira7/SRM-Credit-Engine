@@ -217,31 +217,45 @@ function LiquidationPage() {
             )}
 
             {liquidationResult && (
-                <Paper elevation={4} sx={{ p: 4, mb: 4, borderRadius: 3, borderLeft: "4px solid", borderColor: "success.main" }}>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
-                        <Typography variant="h6" color="success.main" fontWeight={700}>
-                            Liquidação Confirmada
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            — ID #{liquidationResult.settlementId}
-                        </Typography>
+                <Paper
+                    elevation={0}
+                    sx={{
+                        p: "1.25rem 1.5rem",
+                        mb: 4,
+                        borderRadius: 3,
+                        border: "0.5px solid",
+                        borderColor: "divider",
+                        borderTop: "4px solid",
+                        borderTopColor: "success.main",
+                    }}
+                >
+                    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2, pb: 1.5, borderBottom: "0.5px solid", borderColor: "divider" }}>
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                            <Typography variant="body1" fontWeight={500}>
+                                Liquidação Confirmada
+                            </Typography>
+                            <Chip
+                                label={liquidationResult.type}
+                                size="small"
+                                sx={{ bgcolor: "rgba(24,95,165,0.1)", color: "#185FA5", fontWeight: 500, fontSize: "0.75rem" }}
+                            />
+                        </Box>
+                        <Typography variant="caption" color="text.secondary">ID #{liquidationResult.settlementId}</Typography>
                     </Box>
 
                     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
                         {[
                             ["Cedente", liquidationResult.cedentName],
-                            ["Tipo", liquidationResult.type],
-                            ["Status", liquidationResult.status],
-                            ["Valor de Face", formatNumber(liquidationResult.faceValue)],
-                            ["Valor Presente", formatNumber(liquidationResult.presentValue)],
-                            ["Cotação Aplicada", formatNumber(liquidationResult.exchangeRate)],
                             ["Moeda Recebível", liquidationResult.receivableCurrency],
                             ["Moeda Pagamento", liquidationResult.paymentCurrency],
+                            ["Cotação Aplicada", formatNumber(liquidationResult.exchangeRate)],
+                            ["Valor de Face", formatNumber(liquidationResult.faceValue)],
+                            ["Valor Presente", formatNumber(liquidationResult.presentValue)],
                             ["Liquidado em", new Date(liquidationResult.settledAt).toLocaleDateString("pt-BR")],
                         ].map(([label, value]) => (
-                            <Box key={label} sx={{ minWidth: 140 }}>
-                                <Typography variant="caption" color="text.secondary" display="block">{label}</Typography>
-                                <Typography variant="body1" fontWeight={600}>{value}</Typography>
+                            <Box key={label} sx={{ minWidth: 130 }}>
+                                <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.25 }}>{label}</Typography>
+                                <Typography variant="body1" fontWeight={500}>{value}</Typography>
                             </Box>
                         ))}
                     </Box>
