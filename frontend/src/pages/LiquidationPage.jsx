@@ -337,16 +337,16 @@ function LiquidationPage() {
                 <Table sx={{ minWidth: 1000 }}>
                     <TableHead>
                         <TableRow sx={{ bgcolor: "rgba(27,35,86,0.05)" }}>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Data</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Cedente</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Documento</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Tipo</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Valor Face</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Valor Presente</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Moeda Recebível</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Moeda Pagamento</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Cotação</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.8rem", color: "text.secondary" }}>Status</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Data</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Cedente</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Documento</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Tipo</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Valor Face</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Valor Presente</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Moeda Recebível</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Moeda Pagamento</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Cotação</TableCell>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
