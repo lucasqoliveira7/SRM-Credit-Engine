@@ -9,7 +9,8 @@ Durante o desenvolvimento do **SRM Credit Engine**, ferramentas de Inteligência
 # Ferramentas Utilizadas
 
 * ChatGPT (OpenAI)
-* Claude
+* Claude (Anthropic)
+* Claude Code (Anthropic)
 
 ---
 
@@ -54,7 +55,15 @@ A IA foi utilizada para acelerar o desenvolvimento da interface:
 * Paginação
 * Filtros
 * Layout utilizando Material UI
-* Ajustes visuais
+* Ajustes visuais e design dos cards de resultado
+
+O **Claude Code** foi utilizado especificamente para:
+
+* Implementação e iteração dos filtros do extrato de liquidações
+* Correções de validação e exibição de erros no frontend
+* Ajustes de layout e padronização visual entre páginas
+* Revisão e auditoria geral do projeto
+* Correção de bugs pontuais identificados durante os testes
 
 ---
 
