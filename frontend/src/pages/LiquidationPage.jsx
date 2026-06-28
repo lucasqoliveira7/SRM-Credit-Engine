@@ -21,6 +21,8 @@ import {
     Typography,
 } from "@mui/material";
 
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import { liquidateReceivable } from "../services/liquidationService";
 import { getLiquidationStatement } from "../services/statementService";
 
@@ -187,12 +189,22 @@ function LiquidationPage() {
 
     return (
         <Box>
-            {/* Formulário de Liquidação */}
-            <Typography variant="h4" gutterBottom>
-                Liquidação de Recebíveis
-            </Typography>
+            {/* Cabeçalho */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}>
+                <Box sx={{ width: 36, height: 36, bgcolor: "primary.main", borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <CurrencyExchangeIcon sx={{ color: "white", fontSize: 20 }} />
+                </Box>
+                <Box>
+                    <Typography variant="h5" fontWeight={700} lineHeight={1.2}>
+                        Liquidação de Recebíveis
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        Registre liquidações com conversão cambial automática entre BRL e USD
+                    </Typography>
+                </Box>
+            </Box>
 
-            <Paper elevation={3} sx={{ p: 4, mb: 4, borderRadius: 3 }}>
+            <Paper elevation={0} sx={{ p: 3, mb: 4, borderRadius: 3, border: "0.5px solid", borderColor: "divider" }}>
                 <Box component="form" onSubmit={handleLiquidate}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
@@ -298,11 +310,21 @@ function LiquidationPage() {
             <Divider sx={{ mb: 4 }} />
 
             {/* Extrato */}
-            <Typography variant="h4" gutterBottom>
-                Extrato de Liquidações
-            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, mb: 3 }}>
+                <Box sx={{ width: 36, height: 36, bgcolor: "primary.main", borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <ReceiptLongIcon sx={{ color: "white", fontSize: 20 }} />
+                </Box>
+                <Box>
+                    <Typography variant="h5" fontWeight={700} lineHeight={1.2}>
+                        Extrato de Liquidações
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        Consulte o histórico completo de liquidações com filtros
+                    </Typography>
+                </Box>
+            </Box>
 
-            <Paper elevation={3} sx={{ p: 3, mb: 3, borderRadius: 3 }}>
+            <Paper elevation={0} sx={{ p: 3, mb: 3, borderRadius: 3, border: "0.5px solid", borderColor: "divider" }}>
                 <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap sx={{ mb: 2 }}>
                     <TextField
                         label="Nome do Cedente"
