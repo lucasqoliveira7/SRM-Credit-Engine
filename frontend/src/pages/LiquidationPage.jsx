@@ -16,6 +16,7 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    TableSortLabel,
     TextField,
     Typography,
 } from "@mui/material";
@@ -50,6 +51,36 @@ function LiquidationPage() {
     const [totalPages, setTotalPages] = useState(0);
     const [totalElements, setTotalElements] = useState(0);
     const [statementError, setStatementError] = useState("");
+    const [sortField, setSortField] = useState(null);
+    const [sortDir, setSortDir] = useState("asc");
+
+    function handleSort(field) {
+        if (sortField === field) {
+            if (sortDir === "asc") {
+                setSortDir("desc");
+            } else {
+                setSortField(null);
+                setSortDir("asc");
+            }
+        } else {
+            setSortField(field);
+            setSortDir("asc");
+        }
+    }
+
+    function getSortedRows() {
+        if (!sortField) return rows;
+        return [...rows].sort((a, b) => {
+            let va = a[sortField] ?? "";
+            let vb = b[sortField] ?? "";
+            if (typeof va === "number" && typeof vb === "number") {
+                return sortDir === "asc" ? va - vb : vb - va;
+            }
+            return sortDir === "asc"
+                ? String(va).localeCompare(String(vb))
+                : String(vb).localeCompare(String(va));
+        });
+    }
 
     function handleFormChange(event) {
         setForm({ ...form, [event.target.name]: event.target.value });
@@ -337,20 +368,32 @@ function LiquidationPage() {
                 <Table sx={{ minWidth: 1000 }}>
                     <TableHead>
                         <TableRow sx={{ bgcolor: "rgba(27,35,86,0.05)" }}>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Data</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Cedente</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Documento</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Tipo</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Valor Face</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Valor Presente</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Moeda Recebível</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Moeda Pagamento</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Cotação</TableCell>
-                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>Status</TableCell>
+                            {[
+                                { label: "Data", field: "settledAt" },
+                                { label: "Cedente", field: "cedentName" },
+                                { label: "Documento", field: "cedentDocument" },
+                                { label: "Tipo", field: "type" },
+                                { label: "Valor Face", field: "faceValue" },
+                                { label: "Valor Presente", field: "presentValue" },
+                                { label: "Moeda Recebível", field: "receivableCurrency" },
+                                { label: "Moeda Pagamento", field: "paymentCurrency" },
+                                { label: "Cotação", field: "exchangeRate" },
+                                { label: "Status", field: "status" },
+                            ].map(({ label, field }) => (
+                                <TableCell key={field} sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary", cursor: "pointer", userSelect: "none" }}>
+                                    <TableSortLabel
+                                        active={sortField === field}
+                                        direction={sortField === field ? sortDir : "asc"}
+                                        onClick={() => handleSort(field)}
+                                    >
+                                        {label}
+                                    </TableSortLabel>
+                                </TableCell>
+                            ))}
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row, index) => (
+                        {getSortedRows().map((row, index) => (
                             <TableRow
                                 key={row.settlementId}
                                 sx={{ bgcolor: index % 2 === 1 ? "rgba(0,0,0,0.02)" : "transparent" }}
