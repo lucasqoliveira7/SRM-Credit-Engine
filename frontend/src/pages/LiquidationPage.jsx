@@ -390,6 +390,7 @@ function LiquidationPage() {
                 <Table sx={{ minWidth: 1000 }}>
                     <TableHead>
                         <TableRow sx={{ bgcolor: "rgba(27,35,86,0.05)" }}>
+                            <TableCell sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary" }}>#</TableCell>
                             {[
                                 { label: "Data", field: "settledAt" },
                                 { label: "Cedente", field: "cedentName" },
@@ -400,7 +401,6 @@ function LiquidationPage() {
                                 { label: "Moeda Recebível", field: "receivableCurrency" },
                                 { label: "Moeda Pagamento", field: "paymentCurrency" },
                                 { label: "Cotação", field: "exchangeRate" },
-                                { label: "Status", field: "status" },
                             ].map(({ label, field }) => (
                                 <TableCell key={field} sx={{ fontWeight: 600, fontSize: "0.875rem", color: "text.secondary", cursor: "pointer", userSelect: "none" }}>
                                     <TableSortLabel
@@ -420,6 +420,7 @@ function LiquidationPage() {
                                 key={row.settlementId}
                                 sx={{ bgcolor: index % 2 === 1 ? "rgba(0,0,0,0.02)" : "transparent" }}
                             >
+                                <TableCell sx={{ color: "text.secondary", fontWeight: 500 }}>#{row.settlementId}</TableCell>
                                 <TableCell>{row.settledAt ? new Date(row.settledAt).toLocaleDateString("pt-BR") : "-"}</TableCell>
                                 <TableCell>{row.cedentName}</TableCell>
                                 <TableCell>{row.cedentDocument}</TableCell>
@@ -435,18 +436,11 @@ function LiquidationPage() {
                                 <TableCell>{row.receivableCurrency}</TableCell>
                                 <TableCell>{row.paymentCurrency}</TableCell>
                                 <TableCell>{formatNumber(row.exchangeRate)}</TableCell>
-                                <TableCell>
-                                    <Chip
-                                        label={row.status}
-                                        size="small"
-                                        sx={{ bgcolor: "rgba(59,109,17,0.1)", color: "#3B6D11", fontWeight: 500, fontSize: "0.72rem" }}
-                                    />
-                                </TableCell>
                             </TableRow>
                         ))}
                         {rows.length === 0 && (
                             <TableRow>
-                                <TableCell align="center" colSpan={10}>
+                                <TableCell align="center" colSpan={11}>
                                     Nenhuma liquidação encontrada.
                                 </TableCell>
                             </TableRow>
