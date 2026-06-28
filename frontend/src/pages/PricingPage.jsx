@@ -3,6 +3,8 @@ import {
     Alert,
     Box,
     Button,
+    Chip,
+    Divider,
     Grid,
     MenuItem,
     Paper,
@@ -175,22 +177,65 @@ function PricingPage() {
                         {results.map((result, index) => (
                             <Paper
                                 key={index}
-                                elevation={3}
+                                elevation={2}
                                 sx={{ p: 3, borderRadius: 3, borderLeft: "4px solid", borderColor: "secondary.main" }}
                             >
-                                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
-                                    {[
-                                        ["Tipo", result.type],
-                                        ["Moeda", result.currency],
-                                        ["Vencimento", formatDate(result.dueDate)],
-                                        ["Valor de Face", formatNumber(result.faceValue)],
-                                        ["Valor Presente", formatNumber(result.presentValue)],
-                                    ].map(([label, value]) => (
-                                        <Box key={label} sx={{ minWidth: 160 }}>
-                                            <Typography variant="caption" color="text.secondary" display="block">{label}</Typography>
-                                            <Typography variant="body1" fontWeight={600}>{value}</Typography>
-                                        </Box>
-                                    ))}
+                                {/* Cabeçalho do card */}
+                                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2 }}>
+                                    <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                                        <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600 }}>
+                                            #{results.length - index}
+                                        </Typography>
+                                        <Chip
+                                            label={result.type}
+                                            size="small"
+                                            sx={{
+                                                fontWeight: 700,
+                                                fontSize: "0.72rem",
+                                                bgcolor: result.type === "DUPLICATA" ? "rgba(27,35,86,0.1)" : "rgba(255,138,0,0.12)",
+                                                color: result.type === "DUPLICATA" ? "primary.main" : "secondary.dark",
+                                            }}
+                                        />
+                                        <Chip
+                                            label={result.currency}
+                                            size="small"
+                                            variant="outlined"
+                                            sx={{ fontWeight: 600, fontSize: "0.72rem" }}
+                                        />
+                                    </Box>
+                                    <Typography variant="caption" color="text.secondary">
+                                        Venc. {formatDate(result.dueDate)}
+                                    </Typography>
+                                </Box>
+
+                                <Divider sx={{ mb: 2 }} />
+
+                                {/* Valores principais */}
+                                <Box sx={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+                                    <Box>
+                                        <Typography variant="caption" color="text.secondary" display="block">
+                                            Valor de Face
+                                        </Typography>
+                                        <Typography variant="h6" fontWeight={700} color="text.primary">
+                                            {formatNumber(result.faceValue)}
+                                        </Typography>
+                                    </Box>
+                                    <Box>
+                                        <Typography variant="caption" color="text.secondary" display="block">
+                                            Valor Presente
+                                        </Typography>
+                                        <Typography variant="h6" fontWeight={700} color="secondary.dark">
+                                            {formatNumber(result.presentValue)}
+                                        </Typography>
+                                    </Box>
+                                    <Box>
+                                        <Typography variant="caption" color="text.secondary" display="block">
+                                            Deságio
+                                        </Typography>
+                                        <Typography variant="h6" fontWeight={700} color="error.main">
+                                            {formatNumber(result.faceValue - result.presentValue)}
+                                        </Typography>
+                                    </Box>
                                 </Box>
                             </Paper>
                         ))}
