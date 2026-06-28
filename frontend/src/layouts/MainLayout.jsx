@@ -36,10 +36,9 @@ function MainLayout({ children }) {
                     width: "100%",
                 }}
             >
-                <Container maxWidth="lg" disableGutters>
-                    <Toolbar disableGutters sx={{ minHeight: 72, px: 2 }}>
+                    <Toolbar disableGutters sx={{ minHeight: 72, px: 4, width: "100%" }}>
 
-                        {/* Logo — esquerda, clicável */}
+                        {/* Logo — canto esquerdo total */}
                         <Box
                             component={Link}
                             to="/"
@@ -76,8 +75,8 @@ function MainLayout({ children }) {
                             </Box>
                         </Box>
 
-                        {/* Nav — direita, ghost style */}
-                        <Box sx={{ display: "flex", gap: 1 }}>
+                        {/* Nav — canto direito total */}
+                        <Box sx={{ display: "flex", gap: 1.5 }}>
                             {navItems.map(({ label, to, icon }) => {
                                 const active = location.pathname === to;
                                 return (
@@ -88,12 +87,14 @@ function MainLayout({ children }) {
                                         startIcon={icon}
                                         sx={{
                                             px: 2.5,
+                                            py: 1,
                                             borderRadius: 2,
                                             fontWeight: 700,
+                                            fontSize: "0.875rem",
                                             color: active ? "primary.dark" : "white",
                                             bgcolor: active ? "secondary.main" : "transparent",
                                             border: "1.5px solid",
-                                            borderColor: active ? "secondary.main" : "rgba(255,255,255,0.25)",
+                                            borderColor: active ? "secondary.main" : "rgba(255,255,255,0.3)",
                                             "&:hover": {
                                                 bgcolor: "secondary.main",
                                                 borderColor: "secondary.main",
@@ -108,7 +109,6 @@ function MainLayout({ children }) {
                             })}
                         </Box>
                     </Toolbar>
-                </Container>
             </AppBar>
 
             <Container maxWidth="lg" sx={{ py: 5 }}>
