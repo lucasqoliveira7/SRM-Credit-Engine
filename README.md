@@ -279,17 +279,6 @@ http://localhost:5173
 
 ---
 
-# Melhorias Futuras
-
-* Autenticação JWT
-* Cache Redis
-* Mensageria com RabbitMQ
-* Observabilidade (Prometheus/Grafana)
-* Testes de Integração
-* CI/CD com GitHub Actions
-
----
-
 # Autor
 
 Lucas Queiroz Oliveira
