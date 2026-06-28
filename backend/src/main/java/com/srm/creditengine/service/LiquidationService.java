@@ -57,6 +57,10 @@ public class LiquidationService {
     public LiquidationResponse liquidate(LiquidationRequest request) {
 
         Cedent cedent = cedentRepository.findByDocument(request.cedentDocument())
+                .map(existing -> {
+                    existing.setName(request.cedentName());
+                    return cedentRepository.save(existing);
+                })
                 .orElseGet(() -> cedentRepository.save(
                         Cedent.builder()
                                 .name(request.cedentName())
