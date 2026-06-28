@@ -253,6 +253,7 @@ function LiquidationPage() {
                             ["Valor de Face", formatNumber(liquidationResult.faceValue)],
                             ["Valor Presente", formatNumber(liquidationResult.presentValue)],
                             ["Liquidado em", new Date(liquidationResult.settledAt).toLocaleDateString("pt-BR")],
+                            ["Documento", liquidationResult.cedentDocument],
                         ].map(([label, value]) => (
                             <Box key={label} sx={{ minWidth: 130 }}>
                                 <Typography variant="caption" color="text.secondary" display="block" sx={{ mb: 0.25 }}>{label}</Typography>
