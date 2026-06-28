@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Divider, Grid, Paper, Typography } from "@mui/material";
+
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
@@ -149,61 +150,60 @@ function Dashboard() {
             </Paper>
 
             {/* Cards de funcionalidades */}
-            <Grid container spacing={3} alignItems="stretch">
+            <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
                 {features.map(({ icon, title, description, action, path }) => (
-                    <Grid item xs={12} md={4} key={title} sx={{ display: "flex" }}>
-                        <Paper
-                            elevation={2}
-                            sx={{
-                                p: 4,
-                                width: "100%",
-                                display: "flex",
-                                flexDirection: "column",
-                                borderRadius: 4,
-                                transition: "transform 0.2s, box-shadow 0.2s",
-                                "&:hover": {
-                                    transform: "translateY(-4px)",
-                                    boxShadow: "0 12px 32px rgba(0,0,0,0.10)",
-                                },
-                            }}
-                        >
-                            {/* Ícone + Título lado a lado */}
-                            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2.5 }}>
-                                <Box
-                                    sx={{
-                                        width: 52,
-                                        height: 52,
-                                        minWidth: 52,
-                                        borderRadius: 2.5,
-                                        bgcolor: "rgba(255,138,0,0.09)",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                >
-                                    {icon}
-                                </Box>
-                                <Typography variant="h6" fontWeight={700} lineHeight={1.3}>
-                                    {title}
-                                </Typography>
-                            </Box>
-
-                            <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8, flexGrow: 1 }}>
-                                {description}
-                            </Typography>
-
-                            <Button
-                                variant="text"
-                                color="secondary"
-                                onClick={() => navigate(path)}
-                                sx={{ mt: 3, alignSelf: "flex-start", fontWeight: 700, px: 0 }}
+                    <Paper
+                        key={title}
+                        elevation={2}
+                        sx={{
+                            p: 4,
+                            flex: "1 1 260px",
+                            display: "flex",
+                            flexDirection: "column",
+                            borderRadius: 4,
+                            transition: "transform 0.2s, box-shadow 0.2s",
+                            "&:hover": {
+                                transform: "translateY(-4px)",
+                                boxShadow: "0 12px 32px rgba(0,0,0,0.10)",
+                            },
+                        }}
+                    >
+                        {/* Ícone + Título lado a lado */}
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2.5 }}>
+                            <Box
+                                sx={{
+                                    width: 52,
+                                    height: 52,
+                                    minWidth: 52,
+                                    borderRadius: 2.5,
+                                    bgcolor: "rgba(255,138,0,0.09)",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                }}
                             >
-                                {action} →
-                            </Button>
-                        </Paper>
-                    </Grid>
+                                {icon}
+                            </Box>
+                            <Typography variant="h6" fontWeight={700} lineHeight={1.3}>
+                                {title}
+                            </Typography>
+                        </Box>
+
+                        <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8, flexGrow: 1 }}>
+                            {description}
+                        </Typography>
+
+                        <Button
+                            variant="text"
+                            color="secondary"
+                            onClick={() => navigate(path)}
+                            sx={{ mt: 3, alignSelf: "flex-start", fontWeight: 700, px: 0 }}
+                        >
+                            {action} →
+                        </Button>
+                    </Paper>
                 ))}
-            </Grid>
+            </Box>
         </Box>
     );
 }

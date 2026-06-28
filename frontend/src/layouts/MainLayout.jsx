@@ -37,9 +37,21 @@ function MainLayout({ children }) {
                 }}
             >
                 <Container maxWidth="lg" disableGutters>
-                    <Toolbar disableGutters sx={{ minHeight: 72, px: 2, gap: 1 }}>
-                        {/* Logo */}
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, flexGrow: 1 }}>
+                    <Toolbar disableGutters sx={{ minHeight: 72, px: 2 }}>
+
+                        {/* Logo — esquerda, clicável */}
+                        <Box
+                            component={Link}
+                            to="/"
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 1.5,
+                                flexGrow: 1,
+                                textDecoration: "none",
+                                color: "inherit",
+                            }}
+                        >
                             <Box
                                 sx={{
                                     width: 42,
@@ -64,7 +76,7 @@ function MainLayout({ children }) {
                             </Box>
                         </Box>
 
-                        {/* Nav */}
+                        {/* Nav — direita, ghost style */}
                         <Box sx={{ display: "flex", gap: 1 }}>
                             {navItems.map(({ label, to, icon }) => {
                                 const active = location.pathname === to;
@@ -78,10 +90,10 @@ function MainLayout({ children }) {
                                             px: 2.5,
                                             borderRadius: 2,
                                             fontWeight: 700,
-                                            color: active ? "primary.dark" : "rgba(255,255,255,0.75)",
+                                            color: active ? "primary.dark" : "white",
                                             bgcolor: active ? "secondary.main" : "transparent",
-                                            border: "1px solid",
-                                            borderColor: active ? "secondary.main" : "rgba(255,255,255,0.15)",
+                                            border: "1.5px solid",
+                                            borderColor: active ? "secondary.main" : "rgba(255,255,255,0.25)",
                                             "&:hover": {
                                                 bgcolor: "secondary.main",
                                                 borderColor: "secondary.main",
