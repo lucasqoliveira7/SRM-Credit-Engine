@@ -49,6 +49,7 @@ CREATE TABLE settlements (
     exchange_rate NUMERIC(19,8) NOT NULL,
     status VARCHAR(30) NOT NULL,
     settled_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    version BIGINT NOT NULL DEFAULT 0,
 
     CONSTRAINT fk_settlements_receivables FOREIGN KEY (receivable_id) REFERENCES receivables(id),
     CONSTRAINT chk_settlements_payment_currency CHECK (payment_currency IN ('BRL', 'USD')),

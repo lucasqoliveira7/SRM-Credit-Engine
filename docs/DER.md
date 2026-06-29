@@ -54,7 +54,7 @@ Representa a liquidação financeira do recebível.
 | Campo | Tipo | Descrição |
 |---|---|---|
 | id | BIGSERIAL | Identificador único |
-| receivable_id | BIGINT | Recebível liquidado |
+| receivable_id | BIGINT | FK para o recebível liquidado |
 | present_value | NUMERIC(19,2) | Valor presente calculado |
 | payment_currency | VARCHAR(3) | Moeda de pagamento |
 | exchange_rate | NUMERIC(19,8) | Taxa usada na conversão |
