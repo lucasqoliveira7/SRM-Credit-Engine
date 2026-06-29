@@ -7,6 +7,7 @@ import com.srm.creditengine.entity.Cedent;
 import com.srm.creditengine.entity.Receivable;
 import com.srm.creditengine.entity.Settlement;
 import com.srm.creditengine.enums.CurrencyCode;
+import com.srm.creditengine.enums.ReceivableStatus;
 import com.srm.creditengine.enums.SettlementStatus;
 import com.srm.creditengine.mapper.ReceivableMapper;
 import com.srm.creditengine.mapper.SettlementMapper;
@@ -96,6 +97,9 @@ public class LiquidationService {
                 .build();
 
         settlement = settlementRepository.save(settlement);
+
+        receivable.setStatus(ReceivableStatus.SETTLED);
+        receivableRepository.save(receivable);
 
         return settlementMapper.toResponse(settlement);
     }
