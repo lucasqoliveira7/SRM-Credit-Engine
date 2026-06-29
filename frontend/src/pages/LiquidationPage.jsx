@@ -122,9 +122,6 @@ function LiquidationPage() {
             if (isNaN(due.getTime()) || due <= today)
                 errors.push("Data de Vencimento inválida. Informe uma data futura.");
         }
-        if (form.receivableCurrency === "BRL" && form.paymentCurrency === "USD")
-            errors.push("Conversão BRL → USD não está disponível. Utilize USD → BRL para recebíveis em dólar.");
-
         if (errors.length > 0) {
             setLiquidationError(errors);
             return;
